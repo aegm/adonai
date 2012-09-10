@@ -53,11 +53,11 @@ define('GOOGLE_ANALYTICS', false);
 
 /** El nombre de tu base de datos 
 define("DB_NAME","");**/
-define("DB_NAME","");
+define("DB_NAME","db_adonai");
 
 //Tu nombre de usuario de MySQL 
 //define('DB_USER', '');
-define('DB_USER', '');
+define('DB_USER', 'root');
 
 /** Tu contraseña de MySQL*/
 //define('DB_PASS', '');

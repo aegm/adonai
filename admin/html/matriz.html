@@ -1,20 +1,43 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>{TITULO}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="{ROOT_URL}css/estilo_wpanel.css"/>
+        <link href="{ROOT_URL}css/estilo_admin.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
         <div id="contenedor">
             <header>
+                <div id="wrapper">
+                    <div class="topbar-wraper">
+                        
+                    </div>
+                </div>
             </header>
             <div id="main">
-                <section>
-                    <article>
-                        <header></header>
-                        <div></div>
-                    </article>
+                <section id="wrapper">
+                    {CONTENIDO}
+                    <aside>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a>Administracion</a> 
+                                </li>
+                                <li>
+                                    <a>Empresa</a>
+                                </li>
+                                <li>
+                                    <a>Noticias</a>
+                                </li>
+                                <li>
+                                    <a>Eventos</a>
+                                </li>
+                                <li>
+                                    <a>Testimonios</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </aside>
                 </section>
             </div>
             <footer></footer>

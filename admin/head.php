@@ -34,4 +34,12 @@ $matriz['USR_INFO'] = "";
 /****************************MENSAJES GENERALES**********************************/
 
 /****************************ARCHIVOS CSS Y JS***********************************/
+$archivo=basename($_SERVER['PHP_SELF']);
+	$archivo=explode(".",$archivo);
+	$archivo=$archivo[0];
+if (is_file("lib/js/$archivo".".js"))
+        $matriz['JS'] = $html->html("../html/js.html",array("src"=>"lib/js/".$archivo.".js"));
+if(is_file("css/$archivo".".css"))
+		$matriz['CSS']=$html->html("../html/css.html",array("href"=>"css/".$archivo.".css","media"=>"all"));
+  
 ?>
