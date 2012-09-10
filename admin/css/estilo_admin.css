@@ -1,0 +1,33 @@
+/* 
+    Document   : estilo_admin
+    Created on : 10/09/2012, 11:12:31 AM
+    Author     : gonzalezan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+*{
+    margin: 0; padding: 0; border: 0;
+}
+
+#contenedor{
+    width: 100%;
+}
+
+header{
+}
+
+#main {
+    width: 50%;
+    margin: 0 auto;
+}
+
