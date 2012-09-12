@@ -29,12 +29,9 @@
     //$matriz['JS'] .= $html->html("html/js.html",array("src"=>"lib/js/--Colocar archivo--.js"));
 
     /********************************************* CONTENIDO *******************************************/
-    $datos = array();
-    //CREANDO EL FORM
-    $array['F0RMULARIO'] = formulario_html("frm_empresa",$datos);
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);
     /***************************************** IMPRIMIENDO MATRIZ ***************************************/
     echo $html->html("html/matriz.html",$matriz);
     
     
-?>
+

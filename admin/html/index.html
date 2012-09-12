@@ -1,8 +1,26 @@
-<article class="article">
-    <section>
-        <header><h2>DATOS DE LA EMPRESA</h2></header>
-        <article>
-            {FORMULARIO}
-        </article>
-    </section>
+<article class="login">
+            <form action="form_process.php" method="post" class="form" id="frm_login">
+                <fieldset class="externo">
+                    <fieldset class="interno">
+                        <legend>Iniciar Sesión</legend>
+                        <p class="for-text">
+                        <label for="usuario">Usuario: </label>
+                        <input type="text" class="text" id="usuario" name="usuario" >
+                        </p>
+                        <p class="for-text">
+                        <label for="clave">Clave: </label>
+                        <input type="password" class="text" id="clave" name="clave" >
+                        </p>
+                    </fieldset>
+                    <p class="for-submit">
+                        <button type="submit" class="gg-button">Entrar</button>
+                        <button type="reset" class="gg-button">Borrar</button>
+                        <a href="registro.php" class="gg-button">Regístrate</a>
+                        <a href="recuperar_clave/" class="gg-button">Recuperar Clave</a>
+                    </p>
+                <input type="hidden" name="form" value="login">
+                <input type="hidden" name="pagina" value="index.php">
+                </fieldset>
+            </form>
+            <div class="clear"></div>
 </article>

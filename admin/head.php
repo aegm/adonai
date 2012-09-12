@@ -8,7 +8,9 @@ ini_set('error_report', E_ALL);
 error_reporting(E_ALL);
 /*****************************LIBRERIAS GLOBALES**********************************/
 require_once '../config.php';
-require_once '../lib/clases/plantilla.class.php';
+require_once 'lib/clases/plantilla.class.php';
+require_once("lib/clases/usr.class.php");
+require_once("lib/clases/menu.class.php");
 /*****************************OBJETO GLOBAL***************************************/
 $html = new plantilla;
 /*****************************VARIABLES PREDEFINIDAS******************************/
@@ -30,6 +32,43 @@ if(GOOGLE_ANALYTICS)
         
 /****************************SESSION DE USUARIOS********************************/
 $matriz['USR_INFO'] = "";        
+
+/***************************************** MENU DE USUARIO ***********************************************/
+	$array['submenu_item']="";
+	
+	$matriz['MENU']="";
+	if($menu->datos)
+		foreach($menu->datos as $item)
+		{
+			if($item['url'] != "#")
+				$item['url'] =  ROOT_URL.$item['url'];
+			if(isset($item['submenu']))
+			{
+				$a_submenu="";
+				foreach($item['submenu'] as $submenu)
+				{
+					if($submenu['url'] != "#")
+						$submenu['url'] =  ROOT_URL.$submenu['url'];
+					if($permiso->datos[basename($submenu['url'])]['ver'])
+						if($submenu['id_acceso']!='5')
+							$a_submenu .= $html->html("../html/submenu_item.html",$submenu);
+						else
+							$a_submenu .= $html->html("../html/boton_chat_cliente.html");//esto es en caso de tener acceso al chat para clientes
+				}
+				$item['submenu'] = $html->html("../html/submenu.html",array("submenus"=>$a_submenu));
+				$matriz['MENU'] .= $html->html("../html/menu.html",$item);
+			}
+			else
+			{
+				$item['submenu']="";
+				if($permiso->datos[basename($item['url'])]['ver'])
+					$matriz['MENU'] .= $html->html("../html/menu.html",$item);
+			}
+		}
+		
+	
+		
+	/*************************************** VALIDACION DEL BROWSER *******************************************/
         
 /****************************MENSAJES GENERALES**********************************/
 

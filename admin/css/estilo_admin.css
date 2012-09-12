@@ -38,10 +38,11 @@ header{
 #wrapper{
     width: 48%;
     margin: 0 auto;
+    border: 1px solid #DDD;
 }
 
 .topbar-wraper{
-    background:url(../../images/top_panel.jpg)no-repeat;
+    background:url(../../images/top_panel.jpg)no-repeat; background-size:100%;
     width: 100%;
     height: 100px;
 }
@@ -86,9 +87,77 @@ nav li:hover{
      background:  #ccc;
 }
 
+.login{
+    padding: 5%;
+}
+
 .article{
     position:  relative;
     width: 84%;
     float: right;
 }
 
+.form .externo{
+	 border: none;
+    margin: 0 auto;
+	 padding:0px;
+    width: 450px;
+}
+.form .interno{
+	border-radius:6px;
+	margin:10px;
+	padding:5px;
+	border:1px solid #ddd;
+}
+.form legend{
+	font-size:14px;
+	font-weight:bold;
+	color:#0099FF;
+}
+.form p{
+	margin:2px auto;
+}
+.form label{
+	display:block;
+	float: left;
+	margin-right:15px;
+	text-align:right;
+	font-size: 12px;
+	font-weight: bold;
+	width: 125px;
+}
+.form .text, .form textarea{
+	font-family:Verdana, Geneva, sans-serif;
+	border:1px solid #666;
+	width:200px;
+	font-size:12px;
+	padding:3px;
+}
+.form select{
+	padding:3px;
+	width:212px;
+	border:1px solid #666;
+}
+.form option{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+	margin:5px;
+}
+.form .for-submit{
+	margin:10px;
+}
+.form span.for-info{
+	display:block;
+	padding-left:150px;
+	color: #999999;
+   font-size: 10px;
+   text-align: left;
+}
+.form .adicional{
+	margin:0px 0px 0px 10px;}
+
+.footer{
+    background: #2b5b8b;
+    text-align: center;
+    color: #fff;
+}

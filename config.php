@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /*
  * Autor: Angel Gonzalez
@@ -10,7 +10,8 @@
 /****************************************** CONFIGURACION GENERAL DEL SITIO *******************************************/
 /** cambia el root del apache. **/
 define('ROOT_DIR',dirname(__FILE__).'/');
-define('ROOT_URL','http://localhost/adonai/');
+/**define('ROOT_URL','http://localhost/adonai/');**/
+define('ROOT_URL','http://almacenadoraadonai.com/diseno/');
 
 /** activa los tipos de erroes del servidor **/
 ini_set('error_report', E_ALL);
