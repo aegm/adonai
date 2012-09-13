@@ -30,8 +30,9 @@
 
     /********************************************* CONTENIDO *******************************************/
     $datos = array();
+    $matriz['ASIDE'] = "";
     //CREANDO EL FORM
-    $array['F0RMULARIO'] = formulario_html("frm_empresa",$datos);
+    //$array['F0RMULARIO'] = formulario_html("frm_empresa",$datos);
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);
     /***************************************** IMPRIMIENDO MATRIZ ***************************************/
     echo $html->html("html/matriz.html",$matriz);

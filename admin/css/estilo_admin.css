@@ -17,7 +17,7 @@ root {
 
 h2 {
     border-bottom: 1px solid #DDD;
-    width: 99%;
+    width: 100%;
     background: #2b5b8b;
     color: #fff;
     text-align: center;
@@ -52,10 +52,10 @@ header{
 }
 
 aside{
-    width: 15%;
+    width: 15.8%;
     float: left;
     position: relative;
-    border-right: 1px solid black;
+    min-height: 300PX;
 }
 
 nav {
@@ -95,6 +95,7 @@ nav li:hover{
     position:  relative;
     width: 84%;
     float: right;
+    border-left: 1px solid black;
 }
 
 .form .externo{

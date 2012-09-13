@@ -76,35 +76,6 @@ class usuario
 		$usuarios=$this->db->query("SELECT * FROM vusuarios WHERE usuario='$user' AND clave='$clave'");
 		if($usuario=$usuarios->fetch_assoc())
 		{	
-			if($usuario['id_grupo']==GRUPO_ESTUDIANTE)
-			{
-				if($usuario['estatus']=='1')
-				{
-					
-					$contrato= new contrato;
-					$contrato->contrato_afiliado($usuario['identificacion']);
-					if($contrato->datos['estatus']=='0')
-					{
-						$this->inactivar($usuario['id_persona'],'2');//aqui esta funcion debe inactivar al usuario en la tabla usuario
-						$this->mensaje="Su usuario ha sido inactivado. Para activar su Cuenta de Usuario debe comunicarse con nosotros por medio de la seccion de Contáctenos";
-						$this->msgTipo='aviso';
-						$this->estatus = false;
-						$this->json=json_encode($this);
-						return $this->estatus;
-					}
-					
-					if($contrato->vencido($usuario['identificacion'],$usuario['id_cod_libro'], $usuario['id_persona']))
-					{
-					//	$this->inactivar($usuario['id_persona'],'3');//aqui esta funcion debe inactivar al usuario en la tabla usuario
-						$this->mensaje=$contrato->mensaje;
-						$this->msgTipo=$contrato->msgTipo;
-						$this->estatus = false;
-						$this->json=json_encode($this);
-						return $this->estatus;
-					}
-				}
-				
-			}
 			if($usuario['estatus']=='2')
 			{
 				$this->mensaje="Su usuario ha sido inactivado. Para activar su Cuenta de Usuario debe comunicarse con nosotros por medio de la seccion de Contáctenos";
@@ -132,9 +103,7 @@ class usuario
 			$this->nombre=$_SESSION[SISTEMA]['nombre']=$usuario['nombre'];
 			$this->apellido=$_SESSION[SISTEMA]['apellido']=$usuario['apellido'];
 			$this->ultima=$_SESSION[SISTEMA]['ultima_entrada']=date("d/m/Y - g:i:s a",$usuario['ultima_entrada']);
-			$this->grado=$_SESSION[SISTEMA]['grado']=$usuario['grado'];
 			$this->datos_actualizados=$_SESSION[SISTEMA]['datos_actualizados']=$usuario['datos_actualizados'];
-			$this->leccion_actual=$_SESSION[SISTEMA]['leccion_actual']=$usuario['leccion_actual'];
 			
 			$this->session=$_SESSION[SISTEMA]['session'] = true;
 			$fecha=strtotime("now");
@@ -177,9 +146,7 @@ class usuario
 		$this->apellido=$_SESSION[SISTEMA]['apellido'];
 		$this->ultima=$_SESSION[SISTEMA]['ultima_entrada'];
 		$this->session=$_SESSION[SISTEMA]['session'];
-		$this->grado=$_SESSION[SISTEMA]['grado'];
 		$this->datos_actualizados=$_SESSION[SISTEMA]['datos_actualizados'];
-		$this->leccion_actual=$_SESSION[SISTEMA]['leccion_actual'];
 		
 		$this->mensaje="Se cargo el usuario desde la session...";
 		$this->msgTipo="ok";
@@ -243,8 +210,8 @@ class usuario
 //----------------------------------------------------------
 // 						PRUEBAS DE LA CLASE
 
-$usuario = new usuario;
-$usuario->login('16595338','1234');
-echo "<br><textarea>".print_r($usuario->datos,true)."</textarea>";
+//$usuario = new usuario;
+//$usuario->login('16595338','1234');
+//echo "<br><textarea>".print_r($usuario->datos,true)."</textarea>";
 
 //----------------------------------------------------------

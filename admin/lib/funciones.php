@@ -313,7 +313,7 @@
 					//*********************************************************************/
 					if($campo['tipo']=="textarea")
 					{
-						$html_campos .= $html->html(ROOT_DIR."html/form_textarea.html",$campo);
+						$html_campos .= $html->html(ROOT_DIR."admin/html/form_textarea.html",$campo);
 					}
 					elseif($campo['tipo']=="select")
 					{	
@@ -338,10 +338,10 @@
 						$html_campos .= $html->html(ROOT_DIR."html/form_select.html",$campo);
 					}
 					else
-						$html_campos .= $html->html(ROOT_DIR."html/form_campo.html",$campo);
+						$html_campos .= $html->html(ROOT_DIR."admin/html/form_campo.html",$campo);
 				}
 				$fieldset['campos'] = $html_campos;
-				$html_fieldset .= $html->html(ROOT_DIR."html/form_fieldset.html",$fieldset);
+				$html_fieldset .= $html->html(ROOT_DIR."admin/html/form_fieldset.html",$fieldset);
 			}
 			/************************* Hiddens ***********************/
 			$formulario['campos_ocultos'] = "";
@@ -356,13 +356,13 @@
 				foreach($formulario['botones'] as $boton)
 				{
 					$boton['deshabilitado'] = $boton['deshabilitado']?" disabled":"";
-					$html_boton .= $html->html(ROOT_DIR."html/form_boton.html",$boton);
+					$html_boton .= $html->html(ROOT_DIR."admin/html/form_boton.html",$boton);
 				}
 			$formulario['botones'] = $html_boton;
 			
 			/**********************************************************/
 			$formulario['fieldsets'] = $html_fieldset;
-			$html_form .= $html->html(ROOT_DIR."html/form.html",$formulario);
+			$html_form .= $html->html(ROOT_DIR."admin/html/form.html",$formulario);
 		}
 		return $html_form;
 	}
