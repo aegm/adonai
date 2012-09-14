@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50150
 File Encoding         : 65001
 
-Date: 2012-09-10 16:14:07
+Date: 2012-09-14 14:05:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,11 +46,12 @@ CREATE TABLE `emp_datbas` (
   `email_contacto` varchar(120) NOT NULL,
   `email_cobranza` varchar(120) DEFAULT NULL,
   PRIMARY KEY (`id_empresa`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of emp_datbas
 -- ----------------------------
+INSERT INTO `emp_datbas` VALUES ('1', 'Prueba', 'J-0000000', 'PRUEBAs', 'PRUEBA', 'PRUEBAS', 'PRUEBA', 'prueba@prueba', 'prueba@pruebas');
 
 -- ----------------------------
 -- Table structure for `eventos`
@@ -85,7 +86,117 @@ CREATE TABLE `formularios` (
 -- ----------------------------
 -- Records of formularios
 -- ----------------------------
-INSERT INTO `formularios` VALUES ('frm_empresa', 'Datos de la Empresa', 'form_process', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-empresa');
+INSERT INTO `formularios` VALUES ('frm_empresa', 'Datos de la Empresa', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-empresa');
+
+-- ----------------------------
+-- Table structure for `formularios_adicional`
+-- ----------------------------
+DROP TABLE IF EXISTS `formularios_adicional`;
+CREATE TABLE `formularios_adicional` (
+  `id_adicional` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_campo` int(10) unsigned NOT NULL,
+  `id` varchar(20) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `class` varchar(100) NOT NULL DEFAULT '',
+  `value` varchar(50) NOT NULL,
+  `deshabilitado` int(1) NOT NULL DEFAULT '0',
+  `orden` int(2) NOT NULL,
+  PRIMARY KEY (`id_adicional`),
+  KEY `formularios_adicional-formulario_campos` (`id_campo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of formularios_adicional
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `formularios_botones`
+-- ----------------------------
+DROP TABLE IF EXISTS `formularios_botones`;
+CREATE TABLE `formularios_botones` (
+  `id_boton` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_formulario` varchar(50) NOT NULL,
+  `id` varchar(50) NOT NULL,
+  `type` varchar(20) NOT NULL DEFAULT 'submit',
+  `nombre` varchar(50) NOT NULL,
+  `class` varchar(50) NOT NULL DEFAULT 'gg-button',
+  `deshabilitado` int(1) NOT NULL,
+  `orden` int(2) NOT NULL,
+  PRIMARY KEY (`id_boton`),
+  KEY `fk_formulario_botones-formulario` (`id_formulario`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of formularios_botones
+-- ----------------------------
+INSERT INTO `formularios_botones` VALUES ('1', 'frm_empresa', 'submit', 'submit', 'Guardar', 'gg-button', '1', '1');
+INSERT INTO `formularios_botones` VALUES ('2', 'frm_empresa', 'btn_modificar', 'button', 'Modificar', 'gg-button', '0', '1');
+
+-- ----------------------------
+-- Table structure for `formularios_campos`
+-- ----------------------------
+DROP TABLE IF EXISTS `formularios_campos`;
+CREATE TABLE `formularios_campos` (
+  `id_campo` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_formulario` varchar(50) NOT NULL,
+  `tipo` varchar(20) NOT NULL DEFAULT 'text',
+  `legend` varchar(50) NOT NULL,
+  `id` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  `clase` varchar(200) NOT NULL DEFAULT 'text',
+  `info` varchar(50) NOT NULL,
+  `obligatorio` int(1) NOT NULL,
+  `deshabilitado` int(1) NOT NULL,
+  `solo_lectura` int(1) NOT NULL,
+  `orden` int(2) NOT NULL,
+  `datos` varchar(50) NOT NULL,
+  `datos_value` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_campo`),
+  KEY `fk_formularios_campos-formulario` (`id_formulario`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=208 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of formularios_campos
+-- ----------------------------
+INSERT INTO `formularios_campos` VALUES ('1', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_rsocial', 'txt_rsocial', 'Razon Social', '', 'text', '', '1', '1', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('2', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_rif', 'txt_rif', 'RIF', '', 'text', '', '1', '1', '0', '2', '', '');
+INSERT INTO `formularios_campos` VALUES ('3', 'frm_empresa', 'textarea', 'Datos de la Empresa', 'txt_somos', 'txt_somos', 'Quienes Somos', '', 'text', '', '1', '1', '0', '3', '', '');
+INSERT INTO `formularios_campos` VALUES ('4', 'frm_empresa', 'textarea', 'Datos de la Empresa', 'txt_mision', 'txt_mision', 'Misión', '', 'text', '', '1', '1', '0', '4', '', '');
+INSERT INTO `formularios_campos` VALUES ('5', 'frm_empresa', 'textarea', 'Datos de la Empresa', 'txt_vision', 'txt_vision', 'Visión', '', 'text', '', '1', '1', '0', '5', '', '');
+INSERT INTO `formularios_campos` VALUES ('6', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_tel', 'txt_tel', 'Telefono', '', 'text', '', '1', '1', '0', '6', '', '');
+INSERT INTO `formularios_campos` VALUES ('7', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_email', 'txt_email', 'Correo contacto', '', 'text', '', '1', '1', '0', '7', '', '');
+INSERT INTO `formularios_campos` VALUES ('8', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_emailc', 'txt_emailc', 'Correo cobranzas', '', 'text', '', '1', '1', '0', '8', '', '');
+INSERT INTO `formularios_campos` VALUES ('9', 'frm_empresa', 'hidden', 'Datos de la Empresa', 'form', 'form', '', 'actualiza-empresa', 'text', '', '0', '0', '0', '9', '', '');
+
+-- ----------------------------
+-- Table structure for `menu`
+-- ----------------------------
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE `menu` (
+  `id_menu` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_acceso` int(10) unsigned NOT NULL,
+  `id` varchar(20) NOT NULL,
+  `clase` varchar(20) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `url` varchar(100) NOT NULL,
+  `target` varchar(20) NOT NULL,
+  `orden` int(2) NOT NULL,
+  `tipo` int(1) NOT NULL COMMENT '0.- Menu principal, # de id para sub menu del id.',
+  `session` int(1) NOT NULL COMMENT '0: desabilitado, 1: solo no session, 2: session y no session, 3: solo session.',
+  PRIMARY KEY (`id_menu`),
+  UNIQUE KEY `orden` (`orden`,`tipo`) USING BTREE,
+  KEY `fk_menu_acceso` (`id_acceso`) USING BTREE,
+  CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`id_acceso`) REFERENCES `usuarios_accesos` (`id_acceso`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of menu
+-- ----------------------------
+INSERT INTO `menu` VALUES ('1', '1', 'menu_empresa', '', 'Empresa', 'wpanel/empresa.php', '', '1', '0', '1');
+INSERT INTO `menu` VALUES ('2', '2', 'menu_noticia', '', 'Noticias', 'wpanel/noticia.php', '', '2', '0', '1');
 
 -- ----------------------------
 -- Table structure for `noticias`
@@ -103,6 +214,37 @@ CREATE TABLE `noticias` (
 -- ----------------------------
 -- Records of noticias
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `personas`
+-- ----------------------------
+DROP TABLE IF EXISTS `personas`;
+CREATE TABLE `personas` (
+  `id_persona` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_estado` int(10) unsigned DEFAULT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `fecha_nacimiento` int(10) DEFAULT NULL,
+  `direccion` varchar(200) NOT NULL,
+  `telefono` varchar(20) NOT NULL,
+  `id_ciudad` int(10) unsigned DEFAULT NULL,
+  `identificacion` varchar(50) NOT NULL,
+  `telefono2` varchar(20) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `correo2` varchar(100) NOT NULL,
+  `creado` varchar(100) NOT NULL,
+  `modificado` varchar(100) NOT NULL,
+  `fecha_creacion` int(12) NOT NULL,
+  `fecha_modificacion` int(12) NOT NULL,
+  `id_grupo` int(10) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_persona`),
+  UNIQUE KEY `in_identificacion` (`identificacion`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6906 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of personas
+-- ----------------------------
+INSERT INTO `personas` VALUES ('1', '1', 'Angel', 'Gonzalez', '474352200', 'El prado', '04262411899', '1', '16595338', ' ', 'angeledugo@gmail.com', ' ', '16595338', ' ', '1347424200', '1347424200', '1');
 
 -- ----------------------------
 -- Table structure for `servicios`
@@ -151,15 +293,101 @@ CREATE TABLE `tipo_usr` (
 -- ----------------------------
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombres` varchar(30) NOT NULL,
-  `apellidos` varchar(30) NOT NULL,
-  `login` varchar(30) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `id_tipo` int(2) NOT NULL,
-  PRIMARY KEY (`id`,`id_tipo`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+  `id_persona` int(10) unsigned NOT NULL,
+  `id_grupo` int(10) unsigned NOT NULL,
+  `usuario` varchar(30) NOT NULL,
+  `clave` varchar(32) NOT NULL,
+  `fecha_registro` int(12) NOT NULL,
+  `ultima_entrada` int(10) NOT NULL,
+  `estatus` varchar(1) NOT NULL DEFAULT '1' COMMENT '1:activo, 2:inactivo, 3:contrato_vencido',
+  PRIMARY KEY (`id_persona`),
+  UNIQUE KEY `in_usuario` (`usuario`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
+INSERT INTO `usuarios` VALUES ('1', '1', 'aegm', '81dc9bdb52d04dc20036dbd8313ed055', '1347424200', '1347647158', '1');
+
+-- ----------------------------
+-- Table structure for `usuarios_accesos`
+-- ----------------------------
+DROP TABLE IF EXISTS `usuarios_accesos`;
+CREATE TABLE `usuarios_accesos` (
+  `id_acceso` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `seguridad` int(4) NOT NULL,
+  PRIMARY KEY (`id_acceso`),
+  UNIQUE KEY `in_nombre` (`nombre`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of usuarios_accesos
+-- ----------------------------
+INSERT INTO `usuarios_accesos` VALUES ('1', 'Empresa', '2222');
+INSERT INTO `usuarios_accesos` VALUES ('2', 'Noticia', '2222');
+
+-- ----------------------------
+-- Table structure for `usuarios_config`
+-- ----------------------------
+DROP TABLE IF EXISTS `usuarios_config`;
+CREATE TABLE `usuarios_config` (
+  `id_persona` int(10) unsigned NOT NULL,
+  `grado` int(2) NOT NULL,
+  `datos_actualizados` varchar(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_persona`),
+  CONSTRAINT `fk_usuarios_config-usuarios` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of usuarios_config
+-- ----------------------------
+INSERT INTO `usuarios_config` VALUES ('1', '1', '0');
+
+-- ----------------------------
+-- Table structure for `usuarios_grupos`
+-- ----------------------------
+DROP TABLE IF EXISTS `usuarios_grupos`;
+CREATE TABLE `usuarios_grupos` (
+  `id_grupo` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_grupo`),
+  UNIQUE KEY `in_nombre` (`nombre`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of usuarios_grupos
+-- ----------------------------
+INSERT INTO `usuarios_grupos` VALUES ('1', 'Super Admin');
+
+-- ----------------------------
+-- Table structure for `usuarios_grupos_permisos`
+-- ----------------------------
+DROP TABLE IF EXISTS `usuarios_grupos_permisos`;
+CREATE TABLE `usuarios_grupos_permisos` (
+  `id_grupo` int(10) unsigned NOT NULL,
+  `id_acceso` int(10) unsigned NOT NULL,
+  `seguridad` int(4) NOT NULL,
+  PRIMARY KEY (`id_grupo`,`id_acceso`),
+  KEY `fk_grupo_permisos-acceso` (`id_acceso`) USING BTREE,
+  CONSTRAINT `fk_grupo_permisos-acceso` FOREIGN KEY (`id_acceso`) REFERENCES `usuarios_accesos` (`id_acceso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_grupo_permisos-grupo` FOREIGN KEY (`id_grupo`) REFERENCES `usuarios_grupos` (`id_grupo`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of usuarios_grupos_permisos
+-- ----------------------------
+INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '1', '2222');
+INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '2', '2222');
+
+-- ----------------------------
+-- View structure for `vmenu`
+-- ----------------------------
+DROP VIEW IF EXISTS `vmenu`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`almacena_adonai`@`localhost` SQL SECURITY DEFINER VIEW `vmenu` AS select `menu`.`id_menu` AS `id_menu`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`usuarios_accesos`.`id_acceso` AS `id_acceso`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios_grupos_permisos`.`seguridad` AS `grupo_seguridad`,`usuarios_accesos`.`nombre` AS `acceso`,`usuarios_accesos`.`seguridad` AS `acceso_seguridad`,`menu`.`id` AS `id`,`menu`.`clase` AS `clase`,`menu`.`nombre` AS `nombre`,`menu`.`url` AS `url`,`menu`.`orden` AS `orden`,`menu`.`tipo` AS `tipo`,`menu`.`session` AS `session`,`menu`.`target` AS `target` from (((`menu` join `usuarios_grupos_permisos` on((`menu`.`id_acceso` = `usuarios_grupos_permisos`.`id_acceso`))) join `usuarios_grupos` on((`usuarios_grupos_permisos`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `usuarios_accesos` on((`usuarios_grupos_permisos`.`id_acceso` = `usuarios_accesos`.`id_acceso`))) ;
+
+-- ----------------------------
+-- View structure for `vusuarios`
+-- ----------------------------
+DROP VIEW IF EXISTS `vusuarios`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`almacena_adonai`@`localhost` SQL SECURITY DEFINER VIEW `vusuarios` AS select `personas`.`id_persona` AS `id_persona`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`personas`.`id_grupo` AS `id_grupo_persona`,`personas`.`identificacion` AS `identificacion`,`personas`.`nombre` AS `nombre`,`personas`.`apellido` AS `apellido`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios`.`usuario` AS `usuario`,`usuarios`.`clave` AS `clave`,`usuarios`.`ultima_entrada` AS `ultima_entrada`,`usuarios_config`.`datos_actualizados` AS `datos_actualizados`,`usuarios`.`estatus` AS `estatus`,`personas`.`correo` AS `correo` from (((`usuarios` join `usuarios_grupos` on((`usuarios`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `personas` on((`usuarios`.`id_persona` = `personas`.`id_persona`))) left join `usuarios_config` on((`personas`.`id_persona` = `usuarios_config`.`id_persona`))) ;
