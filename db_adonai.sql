@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50150
 Source Host           : localhost:3306
-Source Database       : db_adonai
+Source Database       : almacena_adonai
 
 Target Server Type    : MYSQL
 Target Server Version : 50150
 File Encoding         : 65001
 
-Date: 2012-09-14 14:05:32
+Date: 2012-09-17 14:39:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -87,6 +87,8 @@ CREATE TABLE `formularios` (
 -- Records of formularios
 -- ----------------------------
 INSERT INTO `formularios` VALUES ('frm_empresa', 'Datos de la Empresa', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-empresa');
+INSERT INTO `formularios` VALUES ('frm_filtro', 'Filtro de busqueda', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'form-filtro');
+INSERT INTO `formularios` VALUES ('frm_noticias', 'Datos de la Noticia', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-noticia');
 
 -- ----------------------------
 -- Table structure for `formularios_adicional`
@@ -104,11 +106,12 @@ CREATE TABLE `formularios_adicional` (
   `orden` int(2) NOT NULL,
   PRIMARY KEY (`id_adicional`),
   KEY `formularios_adicional-formulario_campos` (`id_campo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of formularios_adicional
 -- ----------------------------
+INSERT INTO `formularios_adicional` VALUES ('1', '10', 'btn_verificar', 'button', '', 'gg-icon-buscar adicional', '', '0', '1');
 
 -- ----------------------------
 -- Table structure for `formularios_botones`
@@ -132,6 +135,8 @@ CREATE TABLE `formularios_botones` (
 -- ----------------------------
 INSERT INTO `formularios_botones` VALUES ('1', 'frm_empresa', 'submit', 'submit', 'Guardar', 'gg-button', '1', '1');
 INSERT INTO `formularios_botones` VALUES ('2', 'frm_empresa', 'btn_modificar', 'button', 'Modificar', 'gg-button', '0', '1');
+INSERT INTO `formularios_botones` VALUES ('3', 'frm_filtro', 'btn_agregar', 'button', 'Agregar', 'gg-button', '0', '1');
+INSERT INTO `formularios_botones` VALUES ('4', 'frm_noticias', 'submit', 'submit', 'Guardar', 'gg-button', '0', '1');
 
 -- ----------------------------
 -- Table structure for `formularios_campos`
@@ -161,7 +166,7 @@ CREATE TABLE `formularios_campos` (
 -- ----------------------------
 -- Records of formularios_campos
 -- ----------------------------
-INSERT INTO `formularios_campos` VALUES ('1', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_rsocial', 'txt_rsocial', 'Razon Social', '', 'text', '', '1', '1', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('1', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_rsocial', 'txt_rsocial', 'Razon Social', '', 'text vobli', '', '1', '1', '0', '1', '', '');
 INSERT INTO `formularios_campos` VALUES ('2', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_rif', 'txt_rif', 'RIF', '', 'text', '', '1', '1', '0', '2', '', '');
 INSERT INTO `formularios_campos` VALUES ('3', 'frm_empresa', 'textarea', 'Datos de la Empresa', 'txt_somos', 'txt_somos', 'Quienes Somos', '', 'text', '', '1', '1', '0', '3', '', '');
 INSERT INTO `formularios_campos` VALUES ('4', 'frm_empresa', 'textarea', 'Datos de la Empresa', 'txt_mision', 'txt_mision', 'Misión', '', 'text', '', '1', '1', '0', '4', '', '');
@@ -170,6 +175,12 @@ INSERT INTO `formularios_campos` VALUES ('6', 'frm_empresa', 'text', 'Datos de l
 INSERT INTO `formularios_campos` VALUES ('7', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_email', 'txt_email', 'Correo contacto', '', 'text', '', '1', '1', '0', '7', '', '');
 INSERT INTO `formularios_campos` VALUES ('8', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_emailc', 'txt_emailc', 'Correo cobranzas', '', 'text', '', '1', '1', '0', '8', '', '');
 INSERT INTO `formularios_campos` VALUES ('9', 'frm_empresa', 'hidden', 'Datos de la Empresa', 'form', 'form', '', 'actualiza-empresa', 'text', '', '0', '0', '0', '9', '', '');
+INSERT INTO `formularios_campos` VALUES ('10', 'frm_filtro', 'text', 'Filtro:', 'txt_id', 'txt_id', 'Id', '', 'text vobli', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('11', 'frm_noticias', 'textarea', 'Noticias', 'txt_titulo', 'txt_titulo', 'titulo noticia', '', 'text vobli', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('12', 'frm_noticias', 'textarea', 'Noticias', 'txt_decrip', 'txt_decrip', 'Descripcion', '', 'text vobli', '', '1', '0', '0', '2', '', '');
+INSERT INTO `formularios_campos` VALUES ('13', 'frm_noticias', 'textarea', 'Noticias', 'txt_conten', 'txt_conten', 'Contenido', '', 'text vobli', '', '1', '0', '0', '3', '', '');
+INSERT INTO `formularios_campos` VALUES ('14', 'frm_noticias', 'select', 'Noticias', 'slt_status', 'slt_status', 'Estatus', '', 'text vobli', '', '1', '0', '0', '4', 'status', 'id_estatus');
+INSERT INTO `formularios_campos` VALUES ('15', 'frm_noticias', 'hidden', 'Noticias', 'form', 'form', '', 'guarda-noticia', 'text', '', '0', '0', '0', '5', '', '');
 
 -- ----------------------------
 -- Table structure for `menu`
@@ -203,17 +214,22 @@ INSERT INTO `menu` VALUES ('2', '2', 'menu_noticia', '', 'Noticias', 'wpanel/not
 -- ----------------------------
 DROP TABLE IF EXISTS `noticias`;
 CREATE TABLE `noticias` (
-  `id_noticia` int(3) NOT NULL,
+  `id_noticia` int(3) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(50) NOT NULL,
   `descripcion` text NOT NULL,
   `contenido` text,
   `status` char(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_noticia`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of noticias
 -- ----------------------------
+INSERT INTO `noticias` VALUES ('1', 'Prueba titulo', 'Prueba de descripcion', 'Prueba de contenido', '1');
+INSERT INTO `noticias` VALUES ('2', 'Prueba 2', 'descripcion 2', 'contenido 2', '1');
+INSERT INTO `noticias` VALUES ('3', 'asd', 'asd', 'asd', '2');
+INSERT INTO `noticias` VALUES ('4', 'asd', 'asd', '<p>&nbsp;asd</p>', '2');
+INSERT INTO `noticias` VALUES ('5', 'prueba de titulo', 'prueba de descripcion', '<p>&nbsp;asdasd&nbsp;</p>\r\n<p>asdn asmd}asdas</p>\r\n<p>d n&ntilde;asd&nbsp;</p>\r\n<p>asd</p>\r\n<p>&nbsp;asd</p>\r\n<p>&nbsp;</p>', '1');
 
 -- ----------------------------
 -- Table structure for `personas`
@@ -262,6 +278,23 @@ CREATE TABLE `servicios` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `status`
+-- ----------------------------
+DROP TABLE IF EXISTS `status`;
+CREATE TABLE `status` (
+  `id_estatus` int(2) NOT NULL DEFAULT '0',
+  `nombre` varchar(20) DEFAULT NULL,
+  `estatus` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of status
+-- ----------------------------
+INSERT INTO `status` VALUES ('1', 'Inactivo', '0');
+INSERT INTO `status` VALUES ('2', 'Activo', '1');
+INSERT INTO `status` VALUES ('3', 'Terminado', '2');
+
+-- ----------------------------
 -- Table structure for `testimonio`
 -- ----------------------------
 DROP TABLE IF EXISTS `testimonio`;
@@ -307,7 +340,7 @@ CREATE TABLE `usuarios` (
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
-INSERT INTO `usuarios` VALUES ('1', '1', 'aegm', '81dc9bdb52d04dc20036dbd8313ed055', '1347424200', '1347647158', '1');
+INSERT INTO `usuarios` VALUES ('1', '1', 'aegm', '81dc9bdb52d04dc20036dbd8313ed055', '1347424200', '1347906462', '1');
 
 -- ----------------------------
 -- Table structure for `usuarios_accesos`
@@ -384,10 +417,10 @@ INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '2', '2222');
 -- View structure for `vmenu`
 -- ----------------------------
 DROP VIEW IF EXISTS `vmenu`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`almacena_adonai`@`localhost` SQL SECURITY DEFINER VIEW `vmenu` AS select `menu`.`id_menu` AS `id_menu`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`usuarios_accesos`.`id_acceso` AS `id_acceso`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios_grupos_permisos`.`seguridad` AS `grupo_seguridad`,`usuarios_accesos`.`nombre` AS `acceso`,`usuarios_accesos`.`seguridad` AS `acceso_seguridad`,`menu`.`id` AS `id`,`menu`.`clase` AS `clase`,`menu`.`nombre` AS `nombre`,`menu`.`url` AS `url`,`menu`.`orden` AS `orden`,`menu`.`tipo` AS `tipo`,`menu`.`session` AS `session`,`menu`.`target` AS `target` from (((`menu` join `usuarios_grupos_permisos` on((`menu`.`id_acceso` = `usuarios_grupos_permisos`.`id_acceso`))) join `usuarios_grupos` on((`usuarios_grupos_permisos`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `usuarios_accesos` on((`usuarios_grupos_permisos`.`id_acceso` = `usuarios_accesos`.`id_acceso`))) ;
+CREATE  VIEW `vmenu` AS select `menu`.`id_menu` AS `id_menu`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`usuarios_accesos`.`id_acceso` AS `id_acceso`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios_grupos_permisos`.`seguridad` AS `grupo_seguridad`,`usuarios_accesos`.`nombre` AS `acceso`,`usuarios_accesos`.`seguridad` AS `acceso_seguridad`,`menu`.`id` AS `id`,`menu`.`clase` AS `clase`,`menu`.`nombre` AS `nombre`,`menu`.`url` AS `url`,`menu`.`orden` AS `orden`,`menu`.`tipo` AS `tipo`,`menu`.`session` AS `session`,`menu`.`target` AS `target` from (((`menu` join `usuarios_grupos_permisos` on((`menu`.`id_acceso` = `usuarios_grupos_permisos`.`id_acceso`))) join `usuarios_grupos` on((`usuarios_grupos_permisos`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `usuarios_accesos` on((`usuarios_grupos_permisos`.`id_acceso` = `usuarios_accesos`.`id_acceso`))) ;
 
 -- ----------------------------
 -- View structure for `vusuarios`
 -- ----------------------------
 DROP VIEW IF EXISTS `vusuarios`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`almacena_adonai`@`localhost` SQL SECURITY DEFINER VIEW `vusuarios` AS select `personas`.`id_persona` AS `id_persona`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`personas`.`id_grupo` AS `id_grupo_persona`,`personas`.`identificacion` AS `identificacion`,`personas`.`nombre` AS `nombre`,`personas`.`apellido` AS `apellido`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios`.`usuario` AS `usuario`,`usuarios`.`clave` AS `clave`,`usuarios`.`ultima_entrada` AS `ultima_entrada`,`usuarios_config`.`datos_actualizados` AS `datos_actualizados`,`usuarios`.`estatus` AS `estatus`,`personas`.`correo` AS `correo` from (((`usuarios` join `usuarios_grupos` on((`usuarios`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `personas` on((`usuarios`.`id_persona` = `personas`.`id_persona`))) left join `usuarios_config` on((`personas`.`id_persona` = `usuarios_config`.`id_persona`))) ;
+CREATE  VIEW `vusuarios` AS select `personas`.`id_persona` AS `id_persona`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`personas`.`id_grupo` AS `id_grupo_persona`,`personas`.`identificacion` AS `identificacion`,`personas`.`nombre` AS `nombre`,`personas`.`apellido` AS `apellido`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios`.`usuario` AS `usuario`,`usuarios`.`clave` AS `clave`,`usuarios`.`ultima_entrada` AS `ultima_entrada`,`usuarios_config`.`datos_actualizados` AS `datos_actualizados`,`usuarios`.`estatus` AS `estatus`,`personas`.`correo` AS `correo` from (((`usuarios` join `usuarios_grupos` on((`usuarios`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `personas` on((`usuarios`.`id_persona` = `personas`.`id_persona`))) left join `usuarios_config` on((`personas`.`id_persona` = `usuarios_config`.`id_persona`))) ;

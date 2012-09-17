@@ -306,7 +306,7 @@
 						foreach($campo['adicionales'] as $adicional)
 						{
 							$adicional['deshabilitado'] = $adicional['deshabilitado']?" disabled":"";
-							$adicionales_html .= $html->html(ROOT_DIR."html/".$adicional['type'].".html",$adicional);
+							$adicionales_html .= $html->html(ROOT_DIR."wpanel/html/".$adicional['type'].".html",$adicional);
 						}
 							
 					$campo['adicionales'] = $adicionales_html;
@@ -333,7 +333,7 @@
 						{
 							$campo['options'] = $html->html(ROOT_DIR."wpanel/html/form_option.html",array("value"=>"","nombre"=>"Seleccione","selected"=>""));
 							foreach($datos['select'][$campo['id']] as $dato)
-								$campo['options'] .= $html->html(ROOT_DIR."html/form_option.html",$dato);
+								$campo['options'] .= $html->html(ROOT_DIR."wpanel/html/form_option.html",$dato);
 						}
 						$html_campos .= $html->html(ROOT_DIR."wpanel/html/form_select.html",$campo);
 					}

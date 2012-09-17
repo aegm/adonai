@@ -10,6 +10,7 @@ require_once('../config.php');
 require_once("lib/clases/usr.class.php");
 require_once("lib/clases/menu.class.php");
 require_once 'lib//clases/empresa.class.php';
+require_once 'lib//clases/noticia.class.php';
 require_once("lib/funciones.php");
 function login($usuario,$clave)
 {
@@ -52,6 +53,16 @@ if(isset($_POST)&&count($_POST)){
 
 			$error_redirect_to = 'empresa.php';
 			$ty_redirect_to = 'empresa.php';
+                    break;
+                case 'guarda-noticia':
+                    $noti = new noticia;
+                    $noti->agregar($txt_titulo, $txt_decrip, $txt_conten,$slt_status);
+                    $_SESSION['mensaje']=$noti->mensaje;
+                    $_SESSION['msgTipo']=$noti->msgTipo;
+                    $_SESSION['msgTitle']=$noti->msgTitle;
+
+                    $error_redirect_to = 'noticia.php';
+                    $ty_redirect_to = 'noticia.php';
                     break;
                 default:
 			$_SESSION['mensaje'] = 'Formulario especificado no es válido. Póngase en contacto con nosotros si tiene alguna pregunta.';

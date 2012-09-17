@@ -55,7 +55,7 @@ aside{
     width: 15.8%;
     float: left;
     position: relative;
-    min-height: 250PX;
+   
 }
 
 nav {
@@ -92,7 +92,7 @@ nav li:hover{
 }
 
 article{
-    min-height: 250px;
+   
 }
 
 .article{
@@ -159,10 +159,18 @@ article{
    text-align: left;
 }
 .form .adicional{
-	margin:0px 0px 0px 10px;}
+	margin:0px 0px 0px 10px;
+        height: 30px;
+        vertical-align: bottom;
+}
 
 .footer{
     background: #2b5b8b;
     text-align: center;
     color: #fff;
+}
+
+article #forma_noticia
+{
+    display: none;
 }
