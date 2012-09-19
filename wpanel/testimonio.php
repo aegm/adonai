@@ -38,10 +38,10 @@
     $datos['tabla'] = "";
     
     $l = 100;
-    $tabla = "noticias";
-    $c = array("titulo","descripcion","contenido","status");
+    $tabla = "testimonio";
+    $c = array("testimonio");
     $p = 1;
-    $id = "id_noticia";
+    $id = "id_test";
     
     //realizando el calculo para diferenciar el comienzo de los encabezados
     $inicial = $i = ($p-1)*$l;
@@ -72,15 +72,15 @@
                                 $clase = "";
                         
                              //agregando acciones
-                         $accion = $html->html("html/accion_tabla.html",array("id"=>$registro['id_noticia'],"dir"=>"noti","ROOT_URL"=>ROOT_URL));
+                         $accion = $html->html("html/accion_tabla.html",array("id"=>$registro['id_test'],"dir"=>"test","ROOT_URL"=>ROOT_URL));
                          
                         $array['registros'] .= $html->html("html/lista_tabla.html",array("tabla"=>$tabla,"id"=>$registro['ID'],"i"=>$i,"campos"=>$campos,"clase"=>$clase,"accion"=>$accion));
             }
     }
     //FILTRO DE BUSSQUEDAS
-    $array['FILTRO'] = formulario_html('frm_filtro');
+    $array['FILTRO'] = formulario_html('frm_ftestimonio');
     //ADICIONANDO EL FORMULARIO PARA AGREGAR UNA NOTICIA O EDITARLA
-    $array['FORMULARIO'] = formulario_html('frm_noticias');
+    $array['FORMULARIO'] = formulario_html('frm_testimonio');
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);
     /***************************************** IMPRIMIENDO MATRIZ ***************************************/
     echo $html->html("html/matriz.html",$matriz);

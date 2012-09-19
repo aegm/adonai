@@ -11,6 +11,8 @@ require_once("lib/clases/usr.class.php");
 require_once("lib/clases/menu.class.php");
 require_once 'lib//clases/empresa.class.php';
 require_once 'lib//clases/noticia.class.php';
+require_once 'lib//clases/evento.class.php';
+require_once 'lib//clases/testimonio.class.php';
 require_once("lib/funciones.php");
 function login($usuario,$clave)
 {
@@ -63,6 +65,33 @@ if(isset($_POST)&&count($_POST)){
 
                     $error_redirect_to = 'noticia.php';
                     $ty_redirect_to = 'noticia.php';
+                    break;
+                case 'guarda-evento':
+                    $eventos = new evento;
+                    $eventos->agregar($txt_titulo, $txt_descrip);
+                    $_SESSION['mensaje']=$eventos->mensaje;
+                    $_SESSION['msgTipo']=$eventos->msgTipo;
+                    $_SESSION['msgTitle']=$eventos->msgTitle;
+                    $error_redirect_to = 'eventos.php';
+                    $ty_redirect_to = 'eventos.php';
+                    break;
+                case 'guarda-test':
+                    $test = new testimonio;
+                    $test->agregar($txt_test);
+                    $_SESSION['mensaje']=$test->mensaje;
+                    $_SESSION['msgTipo']=$test->msgTipo;
+                    $_SESSION['msgTitle']=$test->msgTitle;
+                    $error_redirect_to = 'testimonio.php';
+                    $ty_redirect_to = 'testimonio.php';
+                    break;
+                case 'modifica-evento':
+                    $eventos = new evento;
+                    $eventos->actualizar($txt_titulo, $txt_descrip,$evento);
+                    $_SESSION['mensaje']=$eventos->mensaje;
+                    $_SESSION['msgTipo']=$eventos->msgTipo;
+                    $_SESSION['msgTitle']=$eventos->msgTitle;
+                    $error_redirect_to = 'eventos.php';
+                    $ty_redirect_to = 'eventos.php';
                     break;
                 default:
 			$_SESSION['mensaje'] = 'Formulario especificado no es válido. Póngase en contacto con nosotros si tiene alguna pregunta.';

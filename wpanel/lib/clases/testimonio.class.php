@@ -4,7 +4,7 @@
 require_once('dbi.class.php');
 require_once('dbi.result.class.php');
  
-class noticia
+class testimonio
 {
 	private $db;
         public $estatus;
@@ -19,7 +19,7 @@ class noticia
 	}
 	public function listar()
 	{
-            $consulta=$this->db->query("SELECT * FROM");
+           /* $consulta=$this->db->query("SELECT * FROM");
                 if ($datos = $consulta->fetch_assoc())
                 {
                     
@@ -36,18 +36,18 @@ class noticia
                     $this->estatus = true;
                     $this->json = json_encode($this);
                 }
-                return $this->estatus;
+                return $this->estatus;*/
                 
 	}
         
-        public function agregar($txt_titulo, $txt_decrip, $txt_conten,$slt_status)
+        public function agregar($txt_test)
         {
             
-            $query = "insert into noticias (titulo, descripcion,contenido,status)VALUES('$txt_titulo','$txt_decrip','$txt_conten','$slt_status')";
+            $query = "insert into testimonio (testimonio)VALUES('$txt_test')";
             $actualiza = $this->db->query($query);
             if(!$this->db->errno){
                 $this->mensaje = "Se Agregaron los Registros Correctamente";
-                $this->msgTitle = "Datos de Noticia";
+                $this->msgTitle = "Datos del Testimonio";
                 $this->msgTipo = "ok";
                 $this->estatus = true;
             }else{
@@ -60,7 +60,7 @@ class noticia
         }
         
         public function actualizar(){
-             $query = "UPDATE emp_datbas SET nombre = '$txt_rsocial',identificacion = '$txt_rif',somos='$txt_somos',mision='$txt_mision',
+            /* $query = "UPDATE emp_datbas SET nombre = '$txt_rsocial',identificacion = '$txt_rif',somos='$txt_somos',mision='$txt_mision',
                                           vision='$txt_vision',telefono='$txt_tel',email_contacto = '$txt_email', email_cobranza = '$txt_emailc' where id_empresa = 1";
             $actualiza = $this->db->query($query);
             if(!$this->db->errno){
@@ -74,21 +74,21 @@ class noticia
                   $this->estatus = false;
             }
             
-            return $this->estatus;
+            return $this->estatus;*/
         }
         
-         public function eliminar($nr_noticia){
-            $query = "DELETE FROM noticias where id_noticia = '$nr_noticia'";
+        public function eliminar($nr_test){
+            $query = "DELETE FROM testimonio where id_test = '$nr_test'";
             $elimina = $this->db->query($query);
             if(!$this->db->errno){
                 $this->mensaje = "Se Elimino el Registro Correctamente";
-                $this->msgTitle = "Datos de la Noticia";
+                $this->msgTitle = "Datos del Testimonio";
                 $this->msgTipo = "ok";
                 $this->estatus = true;
             }else{
                  $this->mensaje = "No se Pudo Actualizar los Registros";
+                 $this->msgTitle = "Datos del Testimonio";
                  $this->msgTipo = "error";
-                 $this->msgTitle = "Datos de la Noticia";
                  $this->estatus = false;
             }
               $this->json = json_encode($this);

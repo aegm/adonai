@@ -1,8 +1,7 @@
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Archivo Creado por el Ing. Angel Gonzalez
+ * correo angeledugo@gmail.com
  */
-
 $(document).ready(function(){
     //habilitando el formulario para agregar las noticias
     $('#btn_agregar').click(function(){
@@ -19,14 +18,13 @@ $(document).ready(function(){
 
 
 function habilita_form(){
-    $('#forma_noticia').animate({
+    $('#forma_testimonio').animate({
         left: '+=50',
         height: 'toggle'
         }, 1000, function() {
         // Animation complete.
         });
 }
-
 
 function eliminar_forma(id){
     var url = "ajax.php";
@@ -36,7 +34,7 @@ function eliminar_forma(id){
                 cache	: false,
                 dataType: "json",
                 url     : url,
-                data	:'a=eliminar-noticia&nr_noticia='+data,
+                data	:'a=eliminar-test&nr_test='+data,
                 success: function(data) {
                     if(data.estatus && data.msgTipo == "ok")
                     {
@@ -54,11 +52,3 @@ function eliminar_forma(id){
                 }
         });
 }
-
-
-//cargando el fckeditor
-window.onload = function() 
-{ 
-var oFCKeditor = new FCKeditor( 'txt_conten' ) ; 
-oFCKeditor.ReplaceTextarea() ; 
-} 

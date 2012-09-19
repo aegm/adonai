@@ -26,7 +26,7 @@
     $matriz['BODY'] = "inicio";
     $matriz['ROOT_URL'] = ROOT_URL;
     $matriz['CSS'] .= incluir_lib(ROOT_URL."wpanel/css/tabla.css");
-     //PLUGINS INCLUIDOS PARA TABLAS SORTABLES
+    //PLUGINS INCLUIDOS PARA TABLAS SORTABLES
     $matriz['CSS'] .= incluir_lib(ROOT_URL."wpanel/css/sortable.theme.blue/style.css");  
     $matriz['JS'] .= incluir_lib(ROOT_URL."wpanel/lib/js/tablesorter/jquery.tablesorter.js");
    
@@ -38,10 +38,10 @@
     $datos['tabla'] = "";
     
     $l = 100;
-    $tabla = "noticias";
-    $c = array("titulo","descripcion","contenido","status");
+    $tabla = "eventos";
+    $c = array("titulo_evento","descripcion");
     $p = 1;
-    $id = "id_noticia";
+    $id = "id_evento";
     
     //realizando el calculo para diferenciar el comienzo de los encabezados
     $inicial = $i = ($p-1)*$l;
@@ -57,30 +57,34 @@
                         $i++;
                         foreach($registro as $campo => $valor)
                         {
+                          
                             $atributos = "";
                             $formato = substr(strstr($campo, '..'), 2);
                             $valor = formato($formato,$valor);
-                            
                             if($i == $inicial)
                             $array['cabezas'] .= $html->html("html/cabeza_tabla.html",array("cabeza"=>str_replace("..".extension($campo),"",$campo)));
-                            
+                        
                             $campos .= $html->html("html/campo_tabla.html",array("campo"=>$valor,"atributos"=>$atributos));
+                           
                         }
+                        
+                       
+                        
                         if($i % 2 == 0)
                                 $clase = "bg_tabla";
                         else
                                 $clase = "";
                         
-                             //agregando acciones
-                         $accion = $html->html("html/accion_tabla.html",array("id"=>$registro['id_noticia'],"dir"=>"noti","ROOT_URL"=>ROOT_URL));
+                        //agregando acciones
+                         $accion = $html->html("html/accion_tabla.html",array("id"=>$registro['id_evento'],"dir"=>"eve","ROOT_URL"=>ROOT_URL));
                          
                         $array['registros'] .= $html->html("html/lista_tabla.html",array("tabla"=>$tabla,"id"=>$registro['ID'],"i"=>$i,"campos"=>$campos,"clase"=>$clase,"accion"=>$accion));
             }
     }
     //FILTRO DE BUSSQUEDAS
-    $array['FILTRO'] = formulario_html('frm_filtro');
+    $array['FILTRO'] = formulario_html('frm_fevento');
     //ADICIONANDO EL FORMULARIO PARA AGREGAR UNA NOTICIA O EDITARLA
-    $array['FORMULARIO'] = formulario_html('frm_noticias');
+    $array['FORMULARIO'] = formulario_html('frm_evento');
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);
     /***************************************** IMPRIMIENDO MATRIZ ***************************************/
     echo $html->html("html/matriz.html",$matriz);

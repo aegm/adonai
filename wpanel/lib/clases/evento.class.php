@@ -4,7 +4,7 @@
 require_once('dbi.class.php');
 require_once('dbi.result.class.php');
  
-class noticia
+class evento
 {
 	private $db;
         public $estatus;
@@ -17,37 +17,37 @@ class noticia
 	{
 	  $this->db=new db;
 	}
-	public function listar()
+	public function listar($data)
 	{
-            $consulta=$this->db->query("SELECT * FROM");
-                if ($datos = $consulta->fetch_assoc())
-                {
-                    
-                    $this->rsocial = $datos['nombre'];
-                    $this->identificacion = $datos['identificacion'];
-                    $this->somos = $datos['somos'];
-                    $this->mision = $datos['mision'];
-                    $this->vision = $datos['vision'];
-                    $this->telefono = $datos['somos'];
-                    $this->correo = $datos['email_contacto'];
-                    $this->email = $datos['email_cobranza'];
+            $consulta=$this->db->query("SELECT * FROM eventos where id_evento = $data");
+               
+            if($consulta->num_rows==0)
+		{
+			$this->mensaje = "No se encontraron eventos...";
+			$this->msgTipo = "aviso";
+			$this->estatus = false;
+			$this->json = json_encode($this);
+			return $this->estatus;
+		}
+            
+                    $this->datos = $consulta->all();
                     $this->mensaje="Se Mostraron los datos correctamente";
                     $this->msgTipo="ok";
                     $this->estatus = true;
                     $this->json = json_encode($this);
-                }
+               
                 return $this->estatus;
                 
 	}
         
-        public function agregar($txt_titulo, $txt_decrip, $txt_conten,$slt_status)
+        public function agregar($txt_titulo, $txt_descrip)
         {
             
-            $query = "insert into noticias (titulo, descripcion,contenido,status)VALUES('$txt_titulo','$txt_decrip','$txt_conten','$slt_status')";
+            $query = "insert into eventos (titulo_evento, descripcion)VALUES('$txt_titulo','$txt_descrip')";
             $actualiza = $this->db->query($query);
             if(!$this->db->errno){
                 $this->mensaje = "Se Agregaron los Registros Correctamente";
-                $this->msgTitle = "Datos de Noticia";
+                $this->msgTitle = "Datos del Evento";
                 $this->msgTipo = "ok";
                 $this->estatus = true;
             }else{
@@ -59,42 +59,40 @@ class noticia
             return $this->estatus;
         }
         
-        public function actualizar(){
-             $query = "UPDATE emp_datbas SET nombre = '$txt_rsocial',identificacion = '$txt_rif',somos='$txt_somos',mision='$txt_mision',
-                                          vision='$txt_vision',telefono='$txt_tel',email_contacto = '$txt_email', email_cobranza = '$txt_emailc' where id_empresa = 1";
+        public function actualizar($txt_titulo, $txt_descrip, $evento){
+            $query = "UPDATE eventos SET titulo_evento = '$txt_titulo',descripcion = '$txt_descrip' where id_evento = $evento";
             $actualiza = $this->db->query($query);
             if(!$this->db->errno){
                 $this->mensaje = "Se Actualizaron los Registros Correctamente";
-                $this->msgTitle = "Datos de la Empresa";
+                $this->msgTitle = "Datos del Evento";
                 $this->msgTipo = "ok";
                 $this->estatus = true;
             }else{
                  $this->mensaje = "No se Pudieron Actualizar los Registros";
                  $this->msgTipo = "error";
-                  $this->estatus = false;
+                 $this->estatus = false;
             }
             
             return $this->estatus;
         }
         
-         public function eliminar($nr_noticia){
-            $query = "DELETE FROM noticias where id_noticia = '$nr_noticia'";
+          public function eliminar($nr_evento){
+           $query = "DELETE FROM eventos where id_evento = '$nr_evento'";
             $elimina = $this->db->query($query);
             if(!$this->db->errno){
                 $this->mensaje = "Se Elimino el Registro Correctamente";
-                $this->msgTitle = "Datos de la Noticia";
+                $this->msgTitle = "Datos del Evento";
                 $this->msgTipo = "ok";
                 $this->estatus = true;
             }else{
                  $this->mensaje = "No se Pudo Actualizar los Registros";
+                 $this->msgTitle = "Datos del Evento";
                  $this->msgTipo = "error";
-                 $this->msgTitle = "Datos de la Noticia";
                  $this->estatus = false;
             }
               $this->json = json_encode($this);
             return $this->estatus;
-            
-        }
+          }
 	
 }
 //----------------------------------------------------------
