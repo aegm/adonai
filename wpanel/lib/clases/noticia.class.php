@@ -19,23 +19,23 @@ class noticia
 	}
 	public function listar()
 	{
-            $consulta=$this->db->query("SELECT * FROM");
-                if ($datos = $consulta->fetch_assoc())
-                {
-                    
-                    $this->rsocial = $datos['nombre'];
-                    $this->identificacion = $datos['identificacion'];
-                    $this->somos = $datos['somos'];
-                    $this->mision = $datos['mision'];
-                    $this->vision = $datos['vision'];
-                    $this->telefono = $datos['somos'];
-                    $this->correo = $datos['email_contacto'];
-                    $this->email = $datos['email_cobranza'];
+           $consulta=$this->db->query("SELECT * FROM noticias where id_noticia = $data");
+               
+            if($consulta->num_rows==0)
+		{
+			$this->mensaje = "No se encontraron Noticias...";
+			$this->msgTipo = "aviso";
+			$this->estatus = false;
+			$this->json = json_encode($this);
+			return $this->estatus;
+		}
+            
+                    $this->datos = $consulta->all();
                     $this->mensaje="Se Mostraron los datos correctamente";
                     $this->msgTipo="ok";
                     $this->estatus = true;
                     $this->json = json_encode($this);
-                }
+               
                 return $this->estatus;
                 
 	}

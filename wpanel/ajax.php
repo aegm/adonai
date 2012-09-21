@@ -48,6 +48,11 @@
                      $noti->eliminar($nr_noticia);
                      echo $noti->json;
                     break;
+                case 'buscar-noticia':
+                    $noti =  new noticia;
+                    $noti->listar($data);
+                    echo $noti->json;
+                    break;
                 
 	}
 ?>
