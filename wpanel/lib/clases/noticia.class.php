@@ -17,7 +17,7 @@ class noticia
 	{
 	  $this->db=new db;
 	}
-	public function listar()
+	public function listar($data)
 	{
            $consulta=$this->db->query("SELECT * FROM noticias where id_noticia = $data");
                
@@ -59,19 +59,19 @@ class noticia
             return $this->estatus;
         }
         
-        public function actualizar(){
-             $query = "UPDATE emp_datbas SET nombre = '$txt_rsocial',identificacion = '$txt_rif',somos='$txt_somos',mision='$txt_mision',
-                                          vision='$txt_vision',telefono='$txt_tel',email_contacto = '$txt_email', email_cobranza = '$txt_emailc' where id_empresa = 1";
-            $actualiza = $this->db->query($query);
+        public function actualizar($txt_titulo, $txt_decrip, $txt_conten,$slt_status, $noticia){
+             $query = "UPDATE noticias SET titulo = '$txt_titulo',descripcion = '$txt_decrip', contenido = '$txt_conten', status = '$slt_status' where id_noticia = $noticia";
+            
+             $actualiza = $this->db->query($query);
             if(!$this->db->errno){
                 $this->mensaje = "Se Actualizaron los Registros Correctamente";
-                $this->msgTitle = "Datos de la Empresa";
+                $this->msgTitle = "Datos de la noticia";
                 $this->msgTipo = "ok";
                 $this->estatus = true;
             }else{
                  $this->mensaje = "No se Pudieron Actualizar los Registros";
                  $this->msgTipo = "error";
-                  $this->estatus = false;
+                 $this->estatus = false;
             }
             
             return $this->estatus;

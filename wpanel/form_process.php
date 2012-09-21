@@ -93,6 +93,24 @@ if(isset($_POST)&&count($_POST)){
                     $error_redirect_to = 'eventos.php';
                     $ty_redirect_to = 'eventos.php';
                     break;
+                case 'modifica-noticia':
+                    $noti = new noticia();
+                    $noti->actualizar($txt_titulo, $txt_decrip, $txt_conten,$slt_status, $noticia);
+                    $_SESSION['mensaje']=$noti->mensaje;
+                    $_SESSION['msgTipo']=$noti->msgTipo;
+                    $_SESSION['msgTitle']=$noti->msgTitle;
+                    $error_redirect_to = 'noticia.php';
+                    $ty_redirect_to = 'noticia.php';
+                    break;
+                case 'modifica-test':
+                    $test = new testimonio;
+                    $test->actualizar($txt_test, $testimonio);
+                    $_SESSION['mensaje']=$test->mensaje;
+                    $_SESSION['msgTipo']=$test->msgTipo;
+                    $_SESSION['msgTitle']=$test->msgTitle;
+                    $error_redirect_to = 'testimonio.php';
+                    $ty_redirect_to = 'testimonio.php';
+                    break;
                 default:
 			$_SESSION['mensaje'] = 'Formulario especificado no es válido. Póngase en contacto con nosotros si tiene alguna pregunta.';
 			$_SESSION['msgTipo']="error";

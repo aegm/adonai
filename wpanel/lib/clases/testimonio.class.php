@@ -17,26 +17,26 @@ class testimonio
 	{
 	  $this->db=new db;
 	}
-	public function listar()
+	public function listar($data)
 	{
-           /* $consulta=$this->db->query("SELECT * FROM");
-                if ($datos = $consulta->fetch_assoc())
-                {
-                    
-                    $this->rsocial = $datos['nombre'];
-                    $this->identificacion = $datos['identificacion'];
-                    $this->somos = $datos['somos'];
-                    $this->mision = $datos['mision'];
-                    $this->vision = $datos['vision'];
-                    $this->telefono = $datos['somos'];
-                    $this->correo = $datos['email_contacto'];
-                    $this->email = $datos['email_cobranza'];
+           $consulta=$this->db->query("SELECT * FROM testimonio where id_test = $data");
+               
+            if($consulta->num_rows==0)
+		{
+			$this->mensaje = "No se encontraron Testimonios...";
+			$this->msgTipo = "aviso";
+			$this->estatus = false;
+			$this->json = json_encode($this);
+			return $this->estatus;
+		}
+            
+                    $this->datos = $consulta->all();
                     $this->mensaje="Se Mostraron los datos correctamente";
                     $this->msgTipo="ok";
                     $this->estatus = true;
                     $this->json = json_encode($this);
-                }
-                return $this->estatus;*/
+               
+                return $this->estatus;
                 
 	}
         
@@ -59,22 +59,22 @@ class testimonio
             return $this->estatus;
         }
         
-        public function actualizar(){
-            /* $query = "UPDATE emp_datbas SET nombre = '$txt_rsocial',identificacion = '$txt_rif',somos='$txt_somos',mision='$txt_mision',
-                                          vision='$txt_vision',telefono='$txt_tel',email_contacto = '$txt_email', email_cobranza = '$txt_emailc' where id_empresa = 1";
-            $actualiza = $this->db->query($query);
+        public function actualizar($txt_test, $testimonio){
+           $query = "UPDATE testimonio SET testimonio = '$txt_test'where id_test = $testimonio";
+            
+             $actualiza = $this->db->query($query);
             if(!$this->db->errno){
                 $this->mensaje = "Se Actualizaron los Registros Correctamente";
-                $this->msgTitle = "Datos de la Empresa";
+                $this->msgTitle = "Datos del Testimonio";
                 $this->msgTipo = "ok";
                 $this->estatus = true;
             }else{
                  $this->mensaje = "No se Pudieron Actualizar los Registros";
                  $this->msgTipo = "error";
-                  $this->estatus = false;
+                 $this->estatus = false;
             }
             
-            return $this->estatus;*/
+            return $this->estatus;
         }
         
         public function eliminar($nr_test){

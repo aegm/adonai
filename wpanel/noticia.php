@@ -39,7 +39,7 @@
     
     $l = 100;
     $tabla = "noticias";
-    $c = array("titulo","descripcion","contenido","status");
+    $c = array("titulo","descripcion","status");
     $p = 1;
     $id = "id_noticia";
     

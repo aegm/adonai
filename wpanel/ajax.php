@@ -53,6 +53,11 @@
                     $noti->listar($data);
                     echo $noti->json;
                     break;
+                case 'buscar-testimonio':
+                    $test =  new testimonio;
+                    $test->listar($data);
+                    echo $test->json;
+                    break;
                 
 	}
 ?>

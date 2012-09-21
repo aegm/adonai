@@ -52,15 +52,17 @@ function buscar_forma(id){
 }
 
 function llenar_forma(item){
-    $('#forma_evento').animate({
+    $('#forma_noticia').animate({
         left: '+=50',
         height: 'toggle'
         }, 200, function() {
         $('#txt_titulo').val(item.titulo);
         $('#txt_decrip').val(item.descripcion);
         $('#form').val('modifica-noticia');
-        $('#txt_conten').val(item.contenido);
+        var oEditor = FCKeditorAPI.GetInstance('txt_conten');
+        var pageValue = oEditor.SetHTML(item.contenido);
         $('#slt_status').val(item.status);
+        $('#noticia').val(item.id_noticia);
         });
 }
 
