@@ -9,10 +9,11 @@
 require_once('../config.php');
 require_once("lib/clases/usr.class.php");
 require_once("lib/clases/menu.class.php");
-require_once 'lib//clases/empresa.class.php';
-require_once 'lib//clases/noticia.class.php';
-require_once 'lib//clases/evento.class.php';
-require_once 'lib//clases/testimonio.class.php';
+require_once 'lib/clases/empresa.class.php';
+require_once 'lib/clases/noticia.class.php';
+require_once 'lib/clases/evento.class.php';
+require_once 'lib/clases/testimonio.class.php';
+require_once 'lib/clases/image.class.php';
 require_once("lib/funciones.php");
 function login($usuario,$clave)
 {
@@ -118,6 +119,8 @@ if(isset($_POST)&&count($_POST)){
 			exit();
                     break;
 	}
+        
+       
 	$lang_dir = '';
 	
 	if($form_error)
@@ -148,6 +151,5 @@ if(isset($_POST)&&count($_POST)){
 		$_SESSION['mensaje'] = 'Error inesperado al intentar procesar su solicitud. Por favor, inténtelo de nuevo más tarde.';
 		header("Location: ".$lang_dir.$error_redirect_to);
 	}     
-}
-                
+}               
 ?>

@@ -56,12 +56,12 @@ define('GOOGLE_ANALYTICS', false);
 define("DB_NAME","almacena_adonai");
 
 //Tu nombre de usuario de MySQL 
-define('DB_USER', 'almacena_adonai');
-//define('DB_USER', 'root');
+//define('DB_USER', 'almacena_adonai');
+define('DB_USER', 'root');
 
 /** Tu contraseña de MySQL*/
-define('DB_PASS', '@lmac3n@');
-//define('DB_PASS', '1234');
+//define('DB_PASS', '@lmac3n@');
+define('DB_PASS', '1234');
 
 /** Host de MySQL (es muy probable que no necesites cambiarlo)
 define('DB_HOST', 'mysql500.ixwebhosting.com'); **/
