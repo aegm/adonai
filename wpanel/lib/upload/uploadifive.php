@@ -4,12 +4,14 @@ UploadiFive
 Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 */
 //validando el directorio
-$directorio = "/adonai/wpanel/img/".$_POST['dir']."/".$_POST['sub_dir']."/";
-if (!is_dir($directorio))
-   mkdir("/adonai/wpanel/img/noti/3", 777, true);
-
+$directorio = "D:\Zend\Apache2\htdocs\adonai\wpanel\img/".$_POST['dir']."/".$_POST['sub_dir']."/";
+if(!is_dir($directorio)){
+    mkdir($directorio,0777); 
+    echo $directorio;
+    
+}
 // Set the uplaod directory
-$uploadDir = $directorio;
+$uploadDir = "\adonai\wpanel\img/".$_POST['dir']."/".$_POST['sub_dir']."/"; 
 // Set the allowed file extensions
 $fileTypes = array('jpg', 'jpeg', 'gif', 'png'); // Allowed file extensions
 
@@ -27,6 +29,7 @@ if (!empty($_FILES) &&  !empty($verifyToken)) {
 		// Save the file
 		move_uploaded_file($tempFile, $targetFile);
 		//echo 1;
+            
 
 	} else {
 
