@@ -4,8 +4,8 @@
  * Archivo creado por el Ing. angel Gonzalez
  * correo: angeledugo@gmail.com
  */
-ini_set('error_report', E_ALL);
-error_reporting(E_ALL);
+/*ini_set('error_report', E_ALL);
+/*error_reporting(E_ALL);
 /*****************************LIBRERIAS GLOBALES**********************************/
 require_once 'config.php';
 require_once 'wpanel/lib/clases/plantilla.class.php';
@@ -34,4 +34,7 @@ $matriz['USR_INFO'] = "";
 /****************************MENSAJES GENERALES**********************************/
 
 /****************************ARCHIVOS CSS Y JS***********************************/
+$archivo=basename($_SERVER['PHP_SELF']);
+	$archivo=explode(".",$archivo);
+	$archivo=$archivo[0];
 ?>

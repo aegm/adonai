@@ -7,15 +7,12 @@
     session_start();
     /************************************** LIBRERIAS LOCALES *****************************************/
     require_once 'config.php';
-    require_once 'wpanel/lib/clases/noticia.class.php';
     require_once 'wpanel/lib/clases/evento.class.php';
 
 
+
     /*************************************** OJEBTOS LOCALES ******************************************/
-    $noti = new noticia;
     $even = new evento;
-
-
     /**************************************************************************************************/	
 
     include_once('head.php');
@@ -33,26 +30,16 @@
     //$matriz['JS'] .= $html->html("html/js.html",array("src"=>"lib/js/--Colocar archivo--.js"));
 
     /********************************************* CONTENIDO *******************************************/	
-    //INSERTANDO LAS NOTICIAS DESTACADAS
-    $array['NOTICIAS'] = "";
-    $noti->listar($data);
-    if($noti->estatus)
-        foreach ($noti->datos as $noticias)
-        {
-        $array['NOTICIAS'] .= $html->html("html/noticias.html",array("titulo"=>$noticias['titulo'],"descripcion"=>$noticias['descripcion'],"fecha" => $noticias['fecha']));
-        }
-        
-      //INSERTANDO LOS EVENTOS DESTACADAS
+     //INSERTANDO LOS EVENTOS DESTACADAS
     $array['EVENTOS'] = "";
     $even->listar($data);
-    if($noti->estatus)
+    if($even->estatus)
         foreach ($even->datos as $eventos)
         {
         $array['EVENTOS'] .= $html->html("html/eventos.html",array("titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
         }   
     
-    $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);    
-        
+    $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);
     /***************************************** MATRIZ **************************************************/
     echo $html->html("html/matriz.html",$matriz);
 ?>

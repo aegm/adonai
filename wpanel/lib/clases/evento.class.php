@@ -19,7 +19,10 @@ class evento
 	}
 	public function listar($data)
 	{
-            $consulta=$this->db->query("SELECT * FROM eventos where id_evento = $data");
+            if (isset($data))
+                $completar_sql = "where id_evento = $data";
+            
+            $consulta=$this->db->query("SELECT * FROM eventos $completar_sql");
                
             if($consulta->num_rows==0)
 		{

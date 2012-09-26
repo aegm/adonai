@@ -19,8 +19,12 @@ class noticia
 	}
 	public function listar($data)
 	{
-           $consulta=$this->db->query("SELECT * FROM noticias where id_noticia = $data");
-               
+            if (isset($data))
+                $completar_sql = "where id_noticia = $data";
+            
+            
+            $consulta=$this->db->query("SELECT * FROM noticias $completar_sql");   
+            
             if($consulta->num_rows==0)
 		{
 			$this->mensaje = "No se encontraron Noticias...";
