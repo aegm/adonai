@@ -22,7 +22,7 @@
     $matriz['TITULO'] .= NOMBRE;
     $matriz['KEYWORDS'] = "";
     $matriz['DESCRIPTION'] = "";
-    $matriz['BODY'] = "inicio";
+    $matriz['BODY'] = "document.location = '#article'";
     //$matriz['CSS'].=$html->html("html/css.html",array("href"=>"/wschool/css/form.css","media"=>"all"));
 
 
@@ -31,7 +31,7 @@
 
     /********************************************* CONTENIDO *******************************************/	
     //LISTANDO LAS NOTICIAS
-    $noti->listar($data);
+    $noti->listar($_GET['id']);
     if($noti->estatus)
         foreach ($noti->datos as $valores) {
             

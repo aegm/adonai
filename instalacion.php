@@ -7,12 +7,12 @@
     session_start();
     /************************************** LIBRERIAS LOCALES *****************************************/
     require_once 'config.php';
-    require_once 'wpanel/lib/clases/evento.class.php';
-
+    require_once 'wpanel/lib/clases/seccion.class.php';
 
 
     /*************************************** OJEBTOS LOCALES ******************************************/
-    $even = new evento;
+    $section = new seccion;
+
     /**************************************************************************************************/	
 
     include_once('head.php');
@@ -30,14 +30,10 @@
     //$matriz['JS'] .= $html->html("html/js.html",array("src"=>"lib/js/--Colocar archivo--.js"));
 
     /********************************************* CONTENIDO *******************************************/	
-     //INSERTANDO LOS EVENTOS DESTACADAS
-    $array['EVENTOS'] = "";
-    $even->listar($_GET['id']);
-    if($even->estatus)
-        foreach ($even->datos as $eventos)
-        {
-        $array['EVENTOS'] .= $html->html("html/eventos.html",array("titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
-        }   
+    //LISTANDO LOS DATOS DE LAS INSTALACIONES
+    $section->listar($data);
+    $array['INSTALACIONES'] = $html->html("html/datos_instalaciones.html",array("INSTALACION"=>$section->instalacion));
+    
     
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);
     /***************************************** MATRIZ **************************************************/

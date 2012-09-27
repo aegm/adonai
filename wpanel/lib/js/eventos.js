@@ -88,3 +88,17 @@ function eliminar_forma(id){
                 }
         });
 }
+
+
+function buscar_img(dir,id)
+{
+  var urlToOpen = "imagenes.php?dir="+dir+"&id="+id;
+  window.location = urlToOpen;
+}
+
+//cargando el fckeditor
+window.onload = function() 
+{ 
+var oFCKeditor = new FCKeditor( 'txt_descripcion' ) ; 
+oFCKeditor.ReplaceTextarea() ; 
+} 

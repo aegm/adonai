@@ -12,6 +12,7 @@
         require_once("lib/clases/evento.class.php");
         require_once("lib/clases/testimonio.class.php");
         require_once("lib/clases/noticia.class.php");
+        require_once("lib/clases/servicio.class.php");
 	$user = new usuario;
 	if(!$user->session())
 	{
@@ -57,6 +58,16 @@
                     $test =  new testimonio;
                     $test->listar($data);
                     echo $test->json;
+                    break;
+                case 'buscar-servicio':
+                    $service =  new servicio;
+                    $service->listar($data);
+                    echo $service->json;
+                    break; 
+                case 'eliminar-servicio':
+                     $service = new servicio;
+                     $service->eliminar($nr_servicio);
+                     echo $service->json;
                     break;
                 
 	}

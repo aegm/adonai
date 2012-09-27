@@ -294,7 +294,7 @@
 				{
 					if(isset($datos[$campo['id']]))
 						$campo['value'] = $datos[$campo['id']];
-						
+				      
 					$campo['label'] = ucfirst($campo['label']);
 					$campo['solo_lectura'] = $campo['solo_lectura']?" readonly":"";
 					$campo['obligatorio'] = $campo['obligatorio']?" (*)":"";
@@ -347,7 +347,11 @@
 			$formulario['campos_ocultos'] = "";
 			if(isset($formulario['hiddens']) && $formulario['hiddens'])
 				foreach($formulario['hiddens'] as $campo_hidden)
-					$formulario['campos_ocultos'] .= $html->html(ROOT_DIR."wpanel/html/form_hidden.html",$campo_hidden);
+                        {
+                                  if(isset($datos[$campo_hidden['id']]))
+						$campo_hidden['value'] = $datos[$campo_hidden['id']];
+                            $formulario['campos_ocultos'] .= $html->html(ROOT_DIR."wpanel/html/form_hidden.html",$campo_hidden);
+                        }
 
 			/************************ botones ***********************/
 			

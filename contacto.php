@@ -7,12 +7,13 @@
     session_start();
     /************************************** LIBRERIAS LOCALES *****************************************/
     require_once 'config.php';
-    require_once 'wpanel/lib/clases/evento.class.php';
-
+    require_once 'wpanel/lib/clases/empresa.class.php';
+   
 
 
     /*************************************** OJEBTOS LOCALES ******************************************/
-    $even = new evento;
+    $datos = new empresa;
+
     /**************************************************************************************************/	
 
     include_once('head.php');
@@ -22,7 +23,7 @@
     $matriz['TITULO'] .= NOMBRE;
     $matriz['KEYWORDS'] = "";
     $matriz['DESCRIPTION'] = "";
-    $matriz['BODY'] = "document.location = '#article'";
+    $matriz['BODY'] = "inicio";
     //$matriz['CSS'].=$html->html("html/css.html",array("href"=>"/wschool/css/form.css","media"=>"all"));
 
 
@@ -30,14 +31,12 @@
     //$matriz['JS'] .= $html->html("html/js.html",array("src"=>"lib/js/--Colocar archivo--.js"));
 
     /********************************************* CONTENIDO *******************************************/	
-     //INSERTANDO LOS EVENTOS DESTACADAS
-    $array['EVENTOS'] = "";
-    $even->listar($_GET['id']);
-    if($even->estatus)
-        foreach ($even->datos as $eventos)
-        {
-        $array['EVENTOS'] .= $html->html("html/eventos.html",array("titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
-        }   
+    
+    //SE IMPRIMEN LOS DATOS DE LA EMPRESA
+    $datos->datBas();
+    $array['CONTACTO'] = $html->html("html/contact.html");
+    
+    
     
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);
     /***************************************** MATRIZ **************************************************/

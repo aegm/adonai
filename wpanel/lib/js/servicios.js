@@ -2,7 +2,10 @@
  * Creado por el Ing. Angel Gonzalez
  * Email: Angeledugo@gmail.com
  */
-
+/* 
+ * Archivo Creado por el Ing. Angel Gonzalez
+ * correo angeledugo@gmail.com
+ */
 $(document).ready(function(){
     //habilitando el formulario para agregar las noticias
     $('#btn_agregar').click(function(){
@@ -19,7 +22,7 @@ $(document).ready(function(){
 
 
 function habilita_form(){
-    $('#forma_noticia').animate({
+    $('#forma_servicio').animate({
         left: '+=50',
         height: 'toggle'
         }, 1000, function() {
@@ -28,7 +31,7 @@ function habilita_form(){
 }
 
 function buscar_forma(id){
-    var url = "ajax.php?a=buscar-noticia";
+    var url = "ajax.php?a=buscar-servicio";
     var data = id;
         $.ajax({
                 type	: "GET",
@@ -52,20 +55,17 @@ function buscar_forma(id){
 }
 
 function llenar_forma(item){
-    $('#forma_noticia').animate({
+    $('#forma_servicio').animate({
         left: '+=50',
         height: 'toggle'
         }, 200, function() {
-        $('#txt_titulo').val(item.titulo);
-        $('#txt_decrip').val(item.descripcion);
-        $('#form').val('modifica-noticia');
-        var oEditor = FCKeditorAPI.GetInstance('txt_conten');
-        var pageValue = oEditor.SetHTML(item.contenido);
-        $('#slt_status').val(item.status);
-        $('#noticia').val(item.id_noticia);
+        $('#txt_servicio').val(item.nombre);
+         var oEditor = FCKeditorAPI.GetInstance('txt_descripcion');
+        var pageValue = oEditor.SetHTML(item.descripcion);
+        $('#form').val('modifica-servicio');
+        $('#servicio').val(item.id_servicio);
         });
 }
-
 
 function eliminar_forma(id){
     var url = "ajax.php";
@@ -75,7 +75,7 @@ function eliminar_forma(id){
                 cache	: false,
                 dataType: "json",
                 url     : url,
-                data	:'a=eliminar-noticia&nr_noticia='+data,
+                data	:'a=eliminar-servicio&nr_servicio='+data,
                 success: function(data) {
                     if(data.estatus && data.msgTipo == "ok")
                     {
@@ -93,7 +93,6 @@ function eliminar_forma(id){
                 }
         });
 }
-
 function buscar_img(dir,id)
 {
   var urlToOpen = "imagenes.php?dir="+dir+"&id="+id;
@@ -103,6 +102,6 @@ function buscar_img(dir,id)
 //cargando el fckeditor
 window.onload = function() 
 { 
-var oFCKeditor = new FCKeditor( 'txt_conten' ) ; 
+var oFCKeditor = new FCKeditor( 'txt_descripcion' ) ; 
 oFCKeditor.ReplaceTextarea() ; 
 } 

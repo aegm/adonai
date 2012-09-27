@@ -39,7 +39,7 @@
     if($noti->estatus)
         foreach ($noti->datos as $noticias)
         {
-        $array['NOTICIAS'] .= $html->html("html/noticias.html",array("titulo"=>$noticias['titulo'],"descripcion"=>$noticias['descripcion'],"fecha" => $noticias['fecha']));
+        $array['NOTICIAS'] .= $html->html("html/noticias.html",array("id"=>$noticias['id_noticia'],"titulo"=>$noticias['titulo'],"descripcion"=>$noticias['descripcion'],"fecha" => $noticias['fecha']));
         }
         
       //INSERTANDO LOS EVENTOS DESTACADAS
@@ -48,7 +48,7 @@
     if($noti->estatus)
         foreach ($even->datos as $eventos)
         {
-        $array['EVENTOS'] .= $html->html("html/eventos.html",array("titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
+        $array['EVENTOS'] .= $html->html("html/eventos.html",array("id"=>$eventos['id_evento'],"titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
         }   
     
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);    

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2012-09-26 15:31:49
+Date: 2012-09-27 15:23:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,7 +39,7 @@ CREATE TABLE `emp_datbas` (
   `id_empresa` int(3) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
   `identificacion` varchar(11) NOT NULL,
-  `somos` varchar(150) NOT NULL,
+  `somos` text NOT NULL,
   `mision` text NOT NULL,
   `vision` text NOT NULL,
   `telefono` varchar(50) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE `emp_datbas` (
 -- ----------------------------
 -- Records of emp_datbas
 -- ----------------------------
-INSERT INTO `emp_datbas` VALUES ('1', 'Prueba', 'J-0000000', 'PRUEBAs', 'PRUEBA', 'PRUEBAS', 'PRUEBA', 'prueba@prueba', 'prueba@pruebas');
+INSERT INTO `emp_datbas` VALUES ('1', 'Prueba', 'J-0000000', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like ', 'PRUEBA', 'PRUEBAS', 'PRUEBAssad', 'prueba@prueba', 'prueba@pruebas');
 
 -- ----------------------------
 -- Table structure for `eventos`
@@ -88,12 +88,15 @@ CREATE TABLE `formularios` (
 -- ----------------------------
 -- Records of formularios
 -- ----------------------------
+INSERT INTO `formularios` VALUES ('frm_cobertura', 'Agregar Cobertura', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-cobertura');
 INSERT INTO `formularios` VALUES ('frm_empresa', 'Datos de la Empresa', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-empresa');
 INSERT INTO `formularios` VALUES ('frm_evento', 'Agregar Evento', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-evento');
 INSERT INTO `formularios` VALUES ('frm_fevento', 'Filtro de Bsuqueda', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-fevento');
 INSERT INTO `formularios` VALUES ('frm_filtro', 'Filtro de busqueda', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'form-filtro');
 INSERT INTO `formularios` VALUES ('frm_ftestimonio', 'Filtro de Bsuqueda', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-ftestimonio');
+INSERT INTO `formularios` VALUES ('frm_instalaciones', 'Agregar Instalaciòn', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-instalacion');
 INSERT INTO `formularios` VALUES ('frm_noticias', 'Datos de la Noticia', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-noticia');
+INSERT INTO `formularios` VALUES ('frm_servicio', 'Agregar Servicio', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-servicio');
 INSERT INTO `formularios` VALUES ('frm_testimonio', 'Agregar Testimonio', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-testimonio');
 
 -- ----------------------------
@@ -136,7 +139,7 @@ CREATE TABLE `formularios_botones` (
   `orden` int(2) NOT NULL,
   PRIMARY KEY (`id_boton`),
   KEY `fk_formulario_botones-formulario` (`id_formulario`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of formularios_botones
@@ -149,6 +152,9 @@ INSERT INTO `formularios_botones` VALUES ('5', 'frm_fevento', 'btn_agregar', 'bu
 INSERT INTO `formularios_botones` VALUES ('6', 'frm_ftestimonio', 'btn_agregar', 'button', 'Agregar', 'gg-button', '0', '1');
 INSERT INTO `formularios_botones` VALUES ('7', 'frm_testimonio', 'btn_agregar', 'submit', 'Agregar', 'gg-button', '0', '1');
 INSERT INTO `formularios_botones` VALUES ('8', 'frm_evento', 'btn_agregar', 'submit', 'Guardar', 'gg-button', '0', '1');
+INSERT INTO `formularios_botones` VALUES ('9', 'frm_instalaciones', 'btn_agregar', 'submit', 'Guardar', 'gg-button', '0', '1');
+INSERT INTO `formularios_botones` VALUES ('10', 'frm_cobertura', 'btn_agregar', 'submit', 'Guardar', 'gg-button', '0', '1');
+INSERT INTO `formularios_botones` VALUES ('11', 'frm_servicio', 'btn_agregar', 'submit', 'Guardar', 'gg-button', '0', '1');
 
 -- ----------------------------
 -- Table structure for `formularios_campos`
@@ -173,7 +179,7 @@ CREATE TABLE `formularios_campos` (
   `datos_value` varchar(20) NOT NULL,
   PRIMARY KEY (`id_campo`),
   KEY `fk_formularios_campos-formulario` (`id_formulario`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of formularios_campos
@@ -203,6 +209,16 @@ INSERT INTO `formularios_campos` VALUES ('209', 'frm_testimonio', 'hidden', 'Tes
 INSERT INTO `formularios_campos` VALUES ('210', 'frm_evento', 'hidden', 'Eventos', 'evento', 'evento', '', '', 'text', '', '0', '0', '0', '6', '', '');
 INSERT INTO `formularios_campos` VALUES ('211', 'frm_noticias', 'hidden', 'Noticias', 'noticia', 'noticia', '', '', 'text', '', '0', '0', '0', '6', '', '');
 INSERT INTO `formularios_campos` VALUES ('212', 'frm_testimonio', 'hidden', 'Testimonio', 'testimonio', 'testimonio', '', '', 'text', '', '0', '0', '0', '4', '', '');
+INSERT INTO `formularios_campos` VALUES ('213', 'frm_instalaciones', 'textarea', 'Instalacion', 'txt_instalacion', 'txt_instalacion', 'Descripcion de las Instalaciones', '', 'text', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('214', 'frm_cobertura', 'textarea', 'Cobertura', 'txt_cobertura', 'txt_cobertura', 'Descripcion de la Cobertura', '', 'text', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('215', 'frm_servicio', 'textarea', 'Servicio', 'txt_servicio', 'txt_servicio', 'Servicio', '', 'text', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('216', 'frm_instalaciones', 'hidden', 'Instalacion', 'form', 'form', '', 'agrega-instalacion', 'text', '', '0', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('218', 'frm_servicio', 'hidden', 'Servicio', 'form', 'form', '', 'agrega-servicio', 'text', '', '0', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('219', 'frm_cobertura', 'hidden', 'Cobertura', 'form', 'form', '', 'agrega-cobertura', 'text', '', '0', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('220', 'frm_instalaciones', 'hidden', 'Instalacion', 'hdd_instalaciones', 'hdd_instalaciones', '', '', 'text', '', '0', '0', '0', '2', '', '');
+INSERT INTO `formularios_campos` VALUES ('221', 'frm_cobertura', 'hidden', 'Cobertura', 'hdd_cobertura', 'hdd_cobertura', '', '', 'text', '', '0', '0', '0', '2', '', '');
+INSERT INTO `formularios_campos` VALUES ('222', 'frm_servicio', 'textarea', 'Servicio', 'txt_descripcion', 'txt_descripcion', 'Descripcion Del Servicio', '', 'text', '', '1', '0', '0', '2', '', '');
+INSERT INTO `formularios_campos` VALUES ('223', 'frm_servicio', 'hidden', 'Servicio', 'servicio', 'servicio', 'Descripcion Del Servicio', '', 'text', '', '1', '0', '0', '2', '', '');
 
 -- ----------------------------
 -- Table structure for `menu`
@@ -223,15 +239,18 @@ CREATE TABLE `menu` (
   UNIQUE KEY `orden` (`orden`,`tipo`) USING BTREE,
   KEY `fk_menu_acceso` (`id_acceso`) USING BTREE,
   CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`id_acceso`) REFERENCES `usuarios_accesos` (`id_acceso`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
 INSERT INTO `menu` VALUES ('1', '1', 'menu_empresa', '', 'Empresa', 'wpanel/empresa.php', '', '1', '0', '1');
-INSERT INTO `menu` VALUES ('2', '2', 'menu_noticia', '', 'Noticias', 'wpanel/noticia.php', '', '2', '0', '1');
-INSERT INTO `menu` VALUES ('3', '3', 'menu_eventos', '', 'Eventos', 'wpanel/eventos.php', '', '3', '0', '1');
-INSERT INTO `menu` VALUES ('4', '4', 'menu_testimonio', '', 'Testimonios', 'wpanel/testimonio.php', '', '4', '0', '1');
+INSERT INTO `menu` VALUES ('2', '2', 'menu_noticia', '', 'Noticias', 'wpanel/noticia.php', '', '5', '0', '1');
+INSERT INTO `menu` VALUES ('3', '3', 'menu_eventos', '', 'Eventos', 'wpanel/eventos.php', '', '6', '0', '1');
+INSERT INTO `menu` VALUES ('4', '4', 'menu_testimonio', '', 'Testimonios', 'wpanel/testimonio.php', '', '7', '0', '1');
+INSERT INTO `menu` VALUES ('5', '5', 'menu_instalaciones', ' ', 'Instalaciones', 'wpanel/Instalaciones.php', ' ', '2', '0', '1');
+INSERT INTO `menu` VALUES ('6', '6', 'menu_servicios', ' ', 'Servicios', 'wpanel/servicios.php', ' ', '3', '0', '1');
+INSERT INTO `menu` VALUES ('7', '7', 'menu_cobertura', ' ', 'Cobertura', 'wpanel/cobertura.php', ' ', '4', '0', '1');
 
 -- ----------------------------
 -- Table structure for `noticias`
@@ -285,19 +304,36 @@ CREATE TABLE `personas` (
 INSERT INTO `personas` VALUES ('1', '1', 'Angel', 'Gonzalez', '474352200', 'El prado', '04262411899', '1', '16595338', ' ', 'angeledugo@gmail.com', ' ', '16595338', ' ', '1347424200', '1347424200', '1');
 
 -- ----------------------------
+-- Table structure for `secciones`
+-- ----------------------------
+DROP TABLE IF EXISTS `secciones`;
+CREATE TABLE `secciones` (
+  `id_seccion` int(3) NOT NULL AUTO_INCREMENT,
+  `instalaciones` text,
+  `cobertura` text,
+  PRIMARY KEY (`id_seccion`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of secciones
+-- ----------------------------
+INSERT INTO `secciones` VALUES ('1', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of asdad</p>', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of asd</p>');
+
+-- ----------------------------
 -- Table structure for `servicios`
 -- ----------------------------
 DROP TABLE IF EXISTS `servicios`;
 CREATE TABLE `servicios` (
-  `id_servicio` int(3) NOT NULL,
+  `id_servicio` int(3) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) NOT NULL,
   `descripcion` text,
   PRIMARY KEY (`id_servicio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of servicios
 -- ----------------------------
+INSERT INTO `servicios` VALUES ('3', 'Prueba', '<p>&nbsp;<span style=\"font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify; \">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</span></p>');
 
 -- ----------------------------
 -- Table structure for `status`
@@ -364,7 +400,7 @@ CREATE TABLE `usuarios` (
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
-INSERT INTO `usuarios` VALUES ('1', '1', 'aegm', '81dc9bdb52d04dc20036dbd8313ed055', '1347424200', '1348687479', '1');
+INSERT INTO `usuarios` VALUES ('1', '1', 'aegm', '81dc9bdb52d04dc20036dbd8313ed055', '1347424200', '1348755185', '1');
 
 -- ----------------------------
 -- Table structure for `usuarios_accesos`
@@ -376,7 +412,7 @@ CREATE TABLE `usuarios_accesos` (
   `seguridad` int(4) NOT NULL,
   PRIMARY KEY (`id_acceso`),
   UNIQUE KEY `in_nombre` (`nombre`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of usuarios_accesos
@@ -385,6 +421,9 @@ INSERT INTO `usuarios_accesos` VALUES ('1', 'Empresa', '2222');
 INSERT INTO `usuarios_accesos` VALUES ('2', 'Noticia', '2222');
 INSERT INTO `usuarios_accesos` VALUES ('3', 'Eventos', '2222');
 INSERT INTO `usuarios_accesos` VALUES ('4', 'Testimonios', '2222');
+INSERT INTO `usuarios_accesos` VALUES ('5', 'Intalaciones', '2222');
+INSERT INTO `usuarios_accesos` VALUES ('6', 'Servicios', '2222');
+INSERT INTO `usuarios_accesos` VALUES ('7', 'Cobertura', '2222');
 
 -- ----------------------------
 -- Table structure for `usuarios_config`
@@ -440,6 +479,9 @@ INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '1', '2222');
 INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '2', '2222');
 INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '3', '2222');
 INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '4', '2222');
+INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '5', '2222');
+INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '6', '2222');
+INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '7', '2222');
 
 -- ----------------------------
 -- View structure for `vmenu`

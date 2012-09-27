@@ -14,6 +14,8 @@ require_once 'lib/clases/noticia.class.php';
 require_once 'lib/clases/evento.class.php';
 require_once 'lib/clases/testimonio.class.php';
 require_once 'lib/clases/image.class.php';
+require_once 'lib/clases/seccion.class.php';
+require_once 'lib/clases/servicio.class.php';
 require_once("lib/funciones.php");
 function login($usuario,$clave)
 {
@@ -112,6 +114,44 @@ if(isset($_POST)&&count($_POST)){
                     $error_redirect_to = 'testimonio.php';
                     $ty_redirect_to = 'testimonio.php';
                     break;
+                case 'agrega-instalacion':
+                    $section = new seccion;
+                    $section->actualizaInstalacion($txt_instalacion);
+                    $_SESSION['mensaje']=$section->mensaje;
+                    $_SESSION['msgTipo']=$section->msgTipo;
+                    $_SESSION['msgTitle']=$section->msgTitle;
+                    $error_redirect_to = 'instalaciones.php';
+                    $ty_redirect_to = 'instalaciones.php';
+                    break;
+                case 'agrega-servicio':
+                    $service = new servicio;
+                    $service->agregar($txt_servicio, $txt_descripcion);
+                    $_SESSION['mensaje']=$service->mensaje;
+                    $_SESSION['msgTipo']=$service->msgTipo;
+                    $_SESSION['msgTitle']=$service->msgTitle;
+                    $error_redirect_to = 'servicios.php';
+                    $ty_redirect_to = 'servicios.php';
+                    break;
+                case 'agrega-cobertura':
+                    $section = new seccion;
+                    $section->actualizaCobertura($txt_cobertura);
+                    $_SESSION['mensaje']=$section->mensaje;
+                    $_SESSION['msgTipo']=$section->msgTipo;
+                    $_SESSION['msgTitle']=$section->msgTitle;
+                    $error_redirect_to = 'cobertura.php';
+                    $ty_redirect_to = 'cobertura.php';
+                    break;
+                case 'modifica-servicio':
+                    $service = new servicio;
+                    $service->actualizar($txt_servicio, $txt_descripcion,$servicio);
+                    $_SESSION['mensaje']=$service->mensaje;
+                    $_SESSION['msgTipo']=$service->msgTipo;
+                    $_SESSION['msgTitle']=$service->msgTitle;
+                    $error_redirect_to = 'servicios.php';
+                    $ty_redirect_to = 'servicios.php';
+                    break;
+                  
+                
                 default:
 			$_SESSION['mensaje'] = 'Formulario especificado no es válido. Póngase en contacto con nosotros si tiene alguna pregunta.';
 			$_SESSION['msgTipo']="error";
