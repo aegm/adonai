@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2012-09-27 15:23:15
+Date: 2012-09-28 14:51:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -91,9 +91,10 @@ CREATE TABLE `formularios` (
 INSERT INTO `formularios` VALUES ('frm_cobertura', 'Agregar Cobertura', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-cobertura');
 INSERT INTO `formularios` VALUES ('frm_empresa', 'Datos de la Empresa', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-empresa');
 INSERT INTO `formularios` VALUES ('frm_evento', 'Agregar Evento', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-evento');
-INSERT INTO `formularios` VALUES ('frm_fevento', 'Filtro de Bsuqueda', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-fevento');
-INSERT INTO `formularios` VALUES ('frm_filtro', 'Filtro de busqueda', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'form-filtro');
-INSERT INTO `formularios` VALUES ('frm_ftestimonio', 'Filtro de Bsuqueda', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-ftestimonio');
+INSERT INTO `formularios` VALUES ('frm_fevento', 'Filtro de Busqueda', 'eventos.php', 'GET', 'application/x-www-form-urlencoded', 'form', 'datbas-fevento');
+INSERT INTO `formularios` VALUES ('frm_filtro', 'Filtro de busqueda', 'servicios.php', 'GET\n', 'application/x-www-form-urlencoded', 'form', 'form-filtro');
+INSERT INTO `formularios` VALUES ('frm_fnoticia', 'Filtro de busqueda', 'noticia.php', 'GET', 'application/x-www-form-urlencoded', 'form', 'form-filtro');
+INSERT INTO `formularios` VALUES ('frm_ftestimonio', 'Filtro de Busqueda', 'testimonio.php', 'GET', 'application/x-www-form-urlencoded', 'form', 'datbas-ftestimonio');
 INSERT INTO `formularios` VALUES ('frm_instalaciones', 'Agregar Instalaciòn', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-instalacion');
 INSERT INTO `formularios` VALUES ('frm_noticias', 'Datos de la Noticia', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-noticia');
 INSERT INTO `formularios` VALUES ('frm_servicio', 'Agregar Servicio', 'form_process.php', 'post', 'application/x-www-form-urlencoded', 'form', 'datbas-servicio');
@@ -115,7 +116,7 @@ CREATE TABLE `formularios_adicional` (
   `orden` int(2) NOT NULL,
   PRIMARY KEY (`id_adicional`),
   KEY `formularios_adicional-formulario_campos` (`id_campo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of formularios_adicional
@@ -123,6 +124,9 @@ CREATE TABLE `formularios_adicional` (
 INSERT INTO `formularios_adicional` VALUES ('1', '10', 'btn_verificar', 'button', '', 'gg-icon-buscar adicional', '', '0', '1');
 INSERT INTO `formularios_adicional` VALUES ('3', '16', 'btn_verificar', 'button', '', 'gg-icon-buscar adicional', '', '0', '1');
 INSERT INTO `formularios_adicional` VALUES ('4', '17', 'btn_verificar', 'button', '', 'gg-icon-buscar adicional', '', '0', '1');
+INSERT INTO `formularios_adicional` VALUES ('5', '228', 'btn_verificar', 'button', '', 'gg-icon-buscar adicional', '', '0', '1');
+INSERT INTO `formularios_adicional` VALUES ('6', '232', 'btn_verificar', 'button', '', 'gg-icon-buscar adicional', '', '0', '1');
+INSERT INTO `formularios_adicional` VALUES ('7', '236', 'btn_verificar', 'button', '', 'gg-icon-buscar adicional', '', '0', '1');
 
 -- ----------------------------
 -- Table structure for `formularios_botones`
@@ -139,7 +143,7 @@ CREATE TABLE `formularios_botones` (
   `orden` int(2) NOT NULL,
   PRIMARY KEY (`id_boton`),
   KEY `fk_formulario_botones-formulario` (`id_formulario`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of formularios_botones
@@ -155,6 +159,7 @@ INSERT INTO `formularios_botones` VALUES ('8', 'frm_evento', 'btn_agregar', 'sub
 INSERT INTO `formularios_botones` VALUES ('9', 'frm_instalaciones', 'btn_agregar', 'submit', 'Guardar', 'gg-button', '0', '1');
 INSERT INTO `formularios_botones` VALUES ('10', 'frm_cobertura', 'btn_agregar', 'submit', 'Guardar', 'gg-button', '0', '1');
 INSERT INTO `formularios_botones` VALUES ('11', 'frm_servicio', 'btn_agregar', 'submit', 'Guardar', 'gg-button', '0', '1');
+INSERT INTO `formularios_botones` VALUES ('13', 'frm_fnoticia', 'btn_agregar', 'button', 'Agregar', 'gg-button', '0', '1');
 
 -- ----------------------------
 -- Table structure for `formularios_campos`
@@ -179,7 +184,7 @@ CREATE TABLE `formularios_campos` (
   `datos_value` varchar(20) NOT NULL,
   PRIMARY KEY (`id_campo`),
   KEY `fk_formularios_campos-formulario` (`id_formulario`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of formularios_campos
@@ -193,14 +198,12 @@ INSERT INTO `formularios_campos` VALUES ('6', 'frm_empresa', 'text', 'Datos de l
 INSERT INTO `formularios_campos` VALUES ('7', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_email', 'txt_email', 'Correo contacto', '', 'text', '', '1', '1', '0', '7', '', '');
 INSERT INTO `formularios_campos` VALUES ('8', 'frm_empresa', 'text', 'Datos de la Empresa', 'txt_emailc', 'txt_emailc', 'Correo cobranzas', '', 'text', '', '1', '1', '0', '8', '', '');
 INSERT INTO `formularios_campos` VALUES ('9', 'frm_empresa', 'hidden', 'Datos de la Empresa', 'form', 'form', '', 'actualiza-empresa', 'text', '', '0', '0', '0', '9', '', '');
-INSERT INTO `formularios_campos` VALUES ('10', 'frm_filtro', 'text', 'Filtro:', 'txt_id', 'txt_id', 'Id', '', 'text vobli', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('10', 'frm_filtro', 'text', 'Filtro:', 'txt_valor', 'f[1][v]', 'Valor', '', 'text vobli', '', '1', '0', '0', '3', '', '');
 INSERT INTO `formularios_campos` VALUES ('11', 'frm_noticias', 'textarea', 'Noticias', 'txt_titulo', 'txt_titulo', 'titulo noticia', '', 'text vobli', '', '1', '0', '0', '1', '', '');
 INSERT INTO `formularios_campos` VALUES ('12', 'frm_noticias', 'textarea', 'Noticias', 'txt_decrip', 'txt_decrip', 'Descripcion', '', 'text vobli', '', '1', '0', '0', '2', '', '');
 INSERT INTO `formularios_campos` VALUES ('13', 'frm_noticias', 'textarea', 'Noticias', 'txt_conten', 'txt_conten', 'Contenido', '', 'text vobli', '', '1', '0', '0', '3', '', '');
 INSERT INTO `formularios_campos` VALUES ('14', 'frm_noticias', 'select', 'Noticias', 'slt_status', 'slt_status', 'Estatus', '', 'text vobli', '', '1', '0', '0', '4', 'status', 'id_estatus');
 INSERT INTO `formularios_campos` VALUES ('15', 'frm_noticias', 'hidden', 'Noticias', 'form', 'form', '', 'guarda-noticia', 'text', '', '0', '0', '0', '5', '', '');
-INSERT INTO `formularios_campos` VALUES ('16', 'frm_ftestimonio', 'text', 'Filtro:', 'txt_id', 'txt_id', 'Id', '', 'text', '', '1', '0', '0', '1', '', '');
-INSERT INTO `formularios_campos` VALUES ('17', 'frm_fevento', 'text', 'Filtro:', 'txt_id', 'txt_id', 'Id', '', 'text', '', '1', '0', '0', '1', '', '');
 INSERT INTO `formularios_campos` VALUES ('18', 'frm_testimonio', 'textarea', 'Testimonio', 'txt_test', 'txt_test', 'Testimonio', '', 'text', '', '1', '0', '0', '1', '', '');
 INSERT INTO `formularios_campos` VALUES ('19', 'frm_evento', 'textarea', 'Eventos', 'txt_titulo', 'txt_titulo', 'Evento', '', 'text', '', '1', '0', '0', '1', '', '');
 INSERT INTO `formularios_campos` VALUES ('20', 'frm_evento', 'textarea', 'Eventos', 'txt_descrip', 'txt_descrip', 'Descripcion del Evento', '', 'text', '', '1', '0', '0', '1', '', '');
@@ -219,6 +222,21 @@ INSERT INTO `formularios_campos` VALUES ('220', 'frm_instalaciones', 'hidden', '
 INSERT INTO `formularios_campos` VALUES ('221', 'frm_cobertura', 'hidden', 'Cobertura', 'hdd_cobertura', 'hdd_cobertura', '', '', 'text', '', '0', '0', '0', '2', '', '');
 INSERT INTO `formularios_campos` VALUES ('222', 'frm_servicio', 'textarea', 'Servicio', 'txt_descripcion', 'txt_descripcion', 'Descripcion Del Servicio', '', 'text', '', '1', '0', '0', '2', '', '');
 INSERT INTO `formularios_campos` VALUES ('223', 'frm_servicio', 'hidden', 'Servicio', 'servicio', 'servicio', 'Descripcion Del Servicio', '', 'text', '', '1', '0', '0', '2', '', '');
+INSERT INTO `formularios_campos` VALUES ('224', 'frm_filtro', 'select', 'Filtro:', 'slt_filtro', 'f[1][c]', 'Filtro', '', 'text vobli', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('226', 'frm_filtro', 'hidden', 'Filtro:', 'tabla', 'tabla', '', '', 'text', '', '0', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('227', 'frm_filtro', 'select', 'Filtro:', 'operadores', 'f[1][o]', 'Operador', '', 'text', '', '1', '0', '0', '2', '', '');
+INSERT INTO `formularios_campos` VALUES ('228', 'frm_fnoticia', 'text', 'Filtro:', 'txt_valor', 'f[1][v]', 'Valor', '', 'text vobli', '', '1', '0', '0', '3', '', '');
+INSERT INTO `formularios_campos` VALUES ('229', 'frm_fnoticia', 'select', 'Filtro:', 'slt_filtro', 'f[1][c]', 'Filtro', '', 'text vobli', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('230', 'frm_fnoticia', 'hidden', 'Filtro:', 'tabla', 'tabla', '', '', 'text', '', '0', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('231', 'frm_fnoticia', 'select', 'Filtro:', 'operadores', 'f[1][o]', 'Operador', '', 'text', '', '1', '0', '0', '2', '', '');
+INSERT INTO `formularios_campos` VALUES ('232', 'frm_fevento', 'text', 'Filtro:', 'txt_valor', 'f[1][v]', 'Valor', '', 'text vobli', '', '1', '0', '0', '3', '', '');
+INSERT INTO `formularios_campos` VALUES ('233', 'frm_fevento', 'select', 'Filtro:', 'slt_filtro', 'f[1][c]', 'Filtro', '', 'text vobli', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('234', 'frm_fevento', 'hidden', 'Filtro:', 'tabla', 'tabla', 'eventos', '', 'text', '', '0', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('235', 'frm_fevento', 'select', 'Filtro:', 'operadores', 'f[1][o]', 'Operador', '', 'text', '', '1', '0', '0', '2', '', '');
+INSERT INTO `formularios_campos` VALUES ('236', 'frm_ftestimonio', 'text', 'Filtro:', 'txt_valor', 'f[1][v]', 'Valor', '', 'text vobli', '', '1', '0', '0', '3', '', '');
+INSERT INTO `formularios_campos` VALUES ('237', 'frm_ftestimonio', 'select', 'Filtro:', 'slt_filtro', 'f[1][c]', 'Filtro', '', 'text vobli', '', '1', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('238', 'frm_ftestimonio', 'hidden', 'Filtro:', 'tabla', 'tabla', '', 'testimonio', 'text', '', '0', '0', '0', '1', '', '');
+INSERT INTO `formularios_campos` VALUES ('239', 'frm_ftestimonio', 'select', 'Filtro:', 'operadores', 'f[1][o]', 'Operador', '', 'text', '', '1', '0', '0', '2', '', '');
 
 -- ----------------------------
 -- Table structure for `menu`
@@ -333,7 +351,7 @@ CREATE TABLE `servicios` (
 -- ----------------------------
 -- Records of servicios
 -- ----------------------------
-INSERT INTO `servicios` VALUES ('3', 'Prueba', '<p>&nbsp;<span style=\"font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify; \">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</span></p>');
+INSERT INTO `servicios` VALUES ('3', 'Neque porro quisquam est qui dolorem', '<p>&nbsp;<span style=\"font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify; \">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</span></p>');
 
 -- ----------------------------
 -- Table structure for `status`
@@ -400,7 +418,7 @@ CREATE TABLE `usuarios` (
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
-INSERT INTO `usuarios` VALUES ('1', '1', 'aegm', '81dc9bdb52d04dc20036dbd8313ed055', '1347424200', '1348755185', '1');
+INSERT INTO `usuarios` VALUES ('1', '1', 'aegm', '81dc9bdb52d04dc20036dbd8313ed055', '1347424200', '1348857418', '1');
 
 -- ----------------------------
 -- Table structure for `usuarios_accesos`
@@ -487,10 +505,10 @@ INSERT INTO `usuarios_grupos_permisos` VALUES ('1', '7', '2222');
 -- View structure for `vmenu`
 -- ----------------------------
 DROP VIEW IF EXISTS `vmenu`;
-CREATE  VIEW `vmenu` AS select `menu`.`id_menu` AS `id_menu`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`usuarios_accesos`.`id_acceso` AS `id_acceso`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios_grupos_permisos`.`seguridad` AS `grupo_seguridad`,`usuarios_accesos`.`nombre` AS `acceso`,`usuarios_accesos`.`seguridad` AS `acceso_seguridad`,`menu`.`id` AS `id`,`menu`.`clase` AS `clase`,`menu`.`nombre` AS `nombre`,`menu`.`url` AS `url`,`menu`.`orden` AS `orden`,`menu`.`tipo` AS `tipo`,`menu`.`session` AS `session`,`menu`.`target` AS `target` from (((`menu` join `usuarios_grupos_permisos` on((`menu`.`id_acceso` = `usuarios_grupos_permisos`.`id_acceso`))) join `usuarios_grupos` on((`usuarios_grupos_permisos`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `usuarios_accesos` on((`usuarios_grupos_permisos`.`id_acceso` = `usuarios_accesos`.`id_acceso`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vmenu` AS select `menu`.`id_menu` AS `id_menu`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`usuarios_accesos`.`id_acceso` AS `id_acceso`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios_grupos_permisos`.`seguridad` AS `grupo_seguridad`,`usuarios_accesos`.`nombre` AS `acceso`,`usuarios_accesos`.`seguridad` AS `acceso_seguridad`,`menu`.`id` AS `id`,`menu`.`clase` AS `clase`,`menu`.`nombre` AS `nombre`,`menu`.`url` AS `url`,`menu`.`orden` AS `orden`,`menu`.`tipo` AS `tipo`,`menu`.`session` AS `session`,`menu`.`target` AS `target` from (((`menu` join `usuarios_grupos_permisos` on((`menu`.`id_acceso` = `usuarios_grupos_permisos`.`id_acceso`))) join `usuarios_grupos` on((`usuarios_grupos_permisos`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `usuarios_accesos` on((`usuarios_grupos_permisos`.`id_acceso` = `usuarios_accesos`.`id_acceso`))) ;
 
 -- ----------------------------
 -- View structure for `vusuarios`
 -- ----------------------------
 DROP VIEW IF EXISTS `vusuarios`;
-CREATE  VIEW `vusuarios` AS select `personas`.`id_persona` AS `id_persona`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`personas`.`id_grupo` AS `id_grupo_persona`,`personas`.`identificacion` AS `identificacion`,`personas`.`nombre` AS `nombre`,`personas`.`apellido` AS `apellido`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios`.`usuario` AS `usuario`,`usuarios`.`clave` AS `clave`,`usuarios`.`ultima_entrada` AS `ultima_entrada`,`usuarios_config`.`datos_actualizados` AS `datos_actualizados`,`usuarios`.`estatus` AS `estatus`,`personas`.`correo` AS `correo` from (((`usuarios` join `usuarios_grupos` on((`usuarios`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `personas` on((`usuarios`.`id_persona` = `personas`.`id_persona`))) left join `usuarios_config` on((`personas`.`id_persona` = `usuarios_config`.`id_persona`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vusuarios` AS select `personas`.`id_persona` AS `id_persona`,`usuarios_grupos`.`id_grupo` AS `id_grupo`,`personas`.`id_grupo` AS `id_grupo_persona`,`personas`.`identificacion` AS `identificacion`,`personas`.`nombre` AS `nombre`,`personas`.`apellido` AS `apellido`,`usuarios_grupos`.`nombre` AS `grupo`,`usuarios`.`usuario` AS `usuario`,`usuarios`.`clave` AS `clave`,`usuarios`.`ultima_entrada` AS `ultima_entrada`,`usuarios_config`.`datos_actualizados` AS `datos_actualizados`,`usuarios`.`estatus` AS `estatus`,`personas`.`correo` AS `correo` from (((`usuarios` join `usuarios_grupos` on((`usuarios`.`id_grupo` = `usuarios_grupos`.`id_grupo`))) join `personas` on((`usuarios`.`id_persona` = `personas`.`id_persona`))) left join `usuarios_config` on((`personas`.`id_persona` = `usuarios_config`.`id_persona`))) ;

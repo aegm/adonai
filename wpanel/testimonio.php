@@ -43,6 +43,14 @@
     $p = 1;
     $id = "id_test";
     
+     if(isset($_GET) && count($_GET))
+	{
+		//$id = json_decode(desencriptar($_GET['id']), true);
+		$url = $_GET;
+		foreach($_GET as $i => $valor)
+			$$i = escapar($valor);
+        }
+    
     //realizando el calculo para diferenciar el comienzo de los encabezados
     $inicial = $i = ($p-1)*$l;
     $inicial++;
@@ -78,7 +86,8 @@
             }
     }
     //FILTRO DE BUSSQUEDAS
-    $array['FILTRO'] = formulario_html('frm_ftestimonio');
+     $arreglo = array ("slt_filtro"=>array("nombre"=>"id_test","testimonio"));
+    $array['FILTRO'] = formulario_html('frm_ftestimonio',array("select"=>$arreglo,"tabla"=>"testimonio"));
     //ADICIONANDO EL FORMULARIO PARA AGREGAR UNA NOTICIA O EDITARLA
     $array['FORMULARIO'] = formulario_html('frm_testimonio');
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);

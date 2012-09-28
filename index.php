@@ -9,11 +9,13 @@
     require_once 'config.php';
     require_once 'wpanel/lib/clases/noticia.class.php';
     require_once 'wpanel/lib/clases/evento.class.php';
+    require_once 'wpanel/lib/clases/servicio.class.php';
 
 
     /*************************************** OJEBTOS LOCALES ******************************************/
     $noti = new noticia;
     $even = new evento;
+    $service = new servicio;
 
 
     /**************************************************************************************************/	
@@ -51,8 +53,21 @@
         $array['EVENTOS'] .= $html->html("html/eventos.html",array("id"=>$eventos['id_evento'],"titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
         }   
     
+    
+    
+    //INSERTANDO LOS SERVICIOS DESTACADOS
+    $array['SERVICIOS'] = "";
+    $service->listar($data);
+    if($service->estatus)
+    {
+        foreach ($service->datos as $services)
+           {
+            $array['SERVICIOS'] .= $html->html("html/servicios_destacados.html",array("id"=>$services['id_servicio'],"titulo"=>$services['nombre'],"descripcion"=>$services['descripcion']));
+           }
+           
+    }
+    
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);    
-        
     /***************************************** MATRIZ **************************************************/
     echo $html->html("html/matriz.html",$matriz);
 ?>

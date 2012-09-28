@@ -36,7 +36,7 @@
     if($even->estatus)
         foreach ($even->datos as $eventos)
         {
-        $array['EVENTOS'] .= $html->html("html/eventos.html",array("titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
+        $array['EVENTOS'] .= $html->html("html/eventos.html",array("id"=>$eventos['id_evento'],"titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
         }   
     
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);

@@ -3,12 +3,26 @@
  * correo angeledugo@gmail.com
  */
 $(document).ready(function(){
+    
+    $(function(){
+        //INICIALIZANDO LOS OPERADORES
+        var html = "<option value=''>Seleccione</option>";
+            html += "<option value=\'=\'>Igual</option>";
+            html += "<option value=\'<>\'>Diferente</option>";
+            html += "<option value=\'>=\'>Mayor Igual</option>"
+            html += "<option value=\'<=\'>Menor Igual</option>"
+            html += "<option value=\'LIKE\'>Como</option>"
+        $('#operadores').html(html);    
+    });
+    
     //habilitando el formulario para agregar las noticias
     $('#btn_agregar').click(function(){
         habilita_form();
     });
     
-    
+     $("#btn_verificar").click(function(){
+          $("#frm_ftestimonio").submit();
+    });
     //PLUGINS INICIALIZADO PARA EL SORTABLE DE LA TABLA EVENTO
     $(function() {		
         $("#myTable").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
@@ -86,4 +100,10 @@ function eliminar_forma(id){
                     }
                 }
         });
+}
+
+function buscar_img(dir,id)
+{
+  var urlToOpen = "imagenes.php?dir="+dir+"&id="+id;
+  window.location = urlToOpen;
 }

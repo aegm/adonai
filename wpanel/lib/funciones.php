@@ -329,11 +329,15 @@
 								$campo['options'] .= $html->html(ROOT_DIR."wpanel/html/form_option.html",$dato);
 							}
 						}
+                                               
 						if(isset($datos['select'][$campo['id']]))
 						{
-							$campo['options'] = $html->html(ROOT_DIR."wpanel/html/form_option.html",array("value"=>"","nombre"=>"Seleccione","selected"=>""));
-							foreach($datos['select'][$campo['id']] as $dato)
-								$campo['options'] .= $html->html(ROOT_DIR."wpanel/html/form_option.html",$dato);
+							
+                                                    $campo['options'] = $html->html(ROOT_DIR."wpanel/html/form_option.html",array("value"=>"","nombre"=>"Seleccione","selected"=>""));
+						  
+                                                    foreach($datos['select'][$campo['id']] as $dato){
+                                                            $campo['options'] .= $html->html(ROOT_DIR."wpanel/html/form_option.html",array("nombre"=>$dato,"value"=>$dato));
+                                                        }
 						}
 						$html_campos .= $html->html(ROOT_DIR."wpanel/html/form_select.html",$campo);
 					}

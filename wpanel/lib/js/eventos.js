@@ -3,12 +3,25 @@
  * correo angeledugo@gmail.com
  */
 $(document).ready(function(){
+  $(function(){
+        //INICIALIZANDO LOS OPERADORES
+        var html = "<option value=''>Seleccione</option>";
+            html += "<option value=\'=\'>Igual</option>";
+            html += "<option value=\'<>\'>Diferente</option>";
+            html += "<option value=\'>=\'>Mayor Igual</option>"
+            html += "<option value=\'<=\'>Menor Igual</option>"
+            html += "<option value=\'LIKE\'>Como</option>"
+        $('#operadores').html(html);    
+    });
+    
     //habilitando el formulario para agregar las noticias
     $('#btn_agregar').click(function(){
         habilita_form();
     });
     
-    
+    $("#btn_verificar").click(function(){
+          $("#frm_fevento").submit();
+    });
     //PLUGINS INICIALIZADO PARA EL SORTABLE DE LA TABLA EVENTO
     $(function() {		
         $("#myTable").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
@@ -56,7 +69,8 @@ function llenar_forma(item){
         height: 'toggle'
         }, 200, function() {
         $('#txt_titulo').val(item.titulo_evento);
-        $('#txt_descrip').val(item.descripcion);
+         var oEditor = FCKeditorAPI.GetInstance('txt_descrip');
+        var pageValue = oEditor.SetHTML(item.descripcion);
         $('#form').val('modifica-evento');
         $('#evento').val(item.id_evento);
         });
@@ -99,6 +113,6 @@ function buscar_img(dir,id)
 //cargando el fckeditor
 window.onload = function() 
 { 
-var oFCKeditor = new FCKeditor( 'txt_descripcion' ) ; 
+var oFCKeditor = new FCKeditor( 'txt_descrip' ) ; 
 oFCKeditor.ReplaceTextarea() ; 
 } 

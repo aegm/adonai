@@ -150,6 +150,15 @@ if(isset($_POST)&&count($_POST)){
                     $error_redirect_to = 'servicios.php';
                     $ty_redirect_to = 'servicios.php';
                     break;
+               /* case 'listar-servicio':
+                    if (isset($_POST['slt_filtro'])&& isset($_POST['txt_valor']))
+                    {
+                        $filtro = $_POST['slt_filtro'];
+                        $valor = $_POST['txt_valor'];
+                    $error_redirect_to = "servicios.php?filtro='$filtro'&id='$valor'";
+                    $ty_redirect_to = "servicios.php?filtro='$filtro'&id='$valor'";
+                    }
+                    break;*/
                   
                 
                 default:

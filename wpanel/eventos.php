@@ -43,6 +43,14 @@
     $p = 1;
     $id = "id_evento";
     
+     if(isset($_GET) && count($_GET))
+	{
+		//$id = json_decode(desencriptar($_GET['id']), true);
+		$url = $_GET;
+		foreach($_GET as $i => $valor)
+			$$i = escapar($valor);
+        }
+    
     //realizando el calculo para diferenciar el comienzo de los encabezados
     $inicial = $i = ($p-1)*$l;
     $inicial++;
@@ -82,7 +90,8 @@
             }
     }
     //FILTRO DE BUSSQUEDAS
-    $array['FILTRO'] = formulario_html('frm_fevento');
+    $arreglo = array ("slt_filtro"=>array("nombre"=>"id_evento","titulo_evento"));
+    $array['FILTRO'] = formulario_html('frm_fevento',array("select"=>$arreglo,"tabla"=>"eventos"));
     //ADICIONANDO EL FORMULARIO PARA AGREGAR UNA NOTICIA O EDITARLA
     $array['FORMULARIO'] = formulario_html('frm_evento');
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);

@@ -34,7 +34,8 @@
     
     //SE IMPRIMEN LOS DATOS DE LA EMPRESA
     $datos->datBas();
-    $array['CONTACTO'] = $html->html("html/contact.html");
+    
+    $array['CONTACTO'] = $html->html("html/contact.html",array("CORREO"=>$datos->correo));
     
     
     

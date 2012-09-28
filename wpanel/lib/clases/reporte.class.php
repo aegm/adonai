@@ -81,13 +81,15 @@ class reporte
 		$order = "";
 		$campo = $id;
 		$inicio = $limite*($pag-1);
-		
+	
 		if($campos)
 			foreach($campos as $valor)
 					$campo .= ",`$valor`";
 		if($filtros[1]['c'] && $filtros[1]['o'])
 		{
-			$where = "WHERE ";
+                  // print_r($filtros);
+                   
+                    $where = "WHERE ";
 			foreach($filtros as $filtro)
 				if($filtro['o'] == "LIKE")
 					$where .= "`$filtro[c]` $filtro[o] '%$filtro[v]%'";

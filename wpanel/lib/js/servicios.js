@@ -7,6 +7,18 @@
  * correo angeledugo@gmail.com
  */
 $(document).ready(function(){
+    $(function(){
+        //INICIALIZANDO LOS OPERADORES
+        var html = "<option value=''>Seleccione</option>";
+            html += "<option value=\'=\'>Igual</option>";
+            html += "<option value=\'<>\'>Diferente</option>";
+            html += "<option value=\'>=\'>Mayor Igual</option>"
+            html += "<option value=\'<=\'>Menor Igual</option>"
+            html += "<option value=\'LIKE\'>Como</option>"
+        $('#operadores').html(html);    
+    });
+    
+    
     //habilitando el formulario para agregar las noticias
     $('#btn_agregar').click(function(){
         habilita_form();
@@ -17,7 +29,16 @@ $(document).ready(function(){
     $(function() {		
         $("#myTable").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
         $("#options").tablesorter({sortList: [[0,0]], headers: { 3:{sorter: false}, 4:{sorter: false}}});
+            
     });
+    
+    
+    
+    //FUNCION PARA ACTIVAR EL FILTRO Y SU BOTON DE BUSQUEDA
+    $("#btn_verificar").click(function(){
+          $("#frm_filtro").submit();
+    });
+    
 });
 
 

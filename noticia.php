@@ -35,7 +35,7 @@
     if($noti->estatus)
         foreach ($noti->datos as $valores) {
             
-            $array['NOTICIA'] .= $html->html("html/noticias.html",array("titulo"=>$valores['titulo'],"descripcion"=>$valores['descripcion'],"conten"=>$valores['contenido'],"fecha" => $valores['fecha'],));
+            $array['NOTICIA'] .= $html->html("html/noticias.html",array("id"=>$valores['id_noticia'],"titulo"=>$valores['titulo'],"descripcion"=>$valores['descripcion'],"conten"=>$valores['contenido'],"fecha" => $valores['fecha'],));
         }
     
     

@@ -190,8 +190,8 @@ class image {
      public function listar($dir, $id)
      {
          //raiz de apertura
-         $raiz = "img/";
-        
+         $raiz = $_SERVER['DOCUMENT_ROOT']."/adonai/images/";
+         echo $raiz.$dir."/".$id."/";
          if(is_dir($raiz.$dir."/".$id."/"))
          {
             
