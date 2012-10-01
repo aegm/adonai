@@ -19,7 +19,9 @@ class testimonio
 	}
 	public function listar($data)
 	{
-           $consulta=$this->db->query("SELECT * FROM testimonio where id_test = $data");
+           if($data)
+               $completar_sql = "where id_test = $data";
+            $consulta=$this->db->query("SELECT * FROM testimonio $completar_sql");
                
             if($consulta->num_rows==0)
 		{

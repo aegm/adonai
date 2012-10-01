@@ -10,13 +10,15 @@
     require_once 'wpanel/lib/clases/noticia.class.php';
     require_once 'wpanel/lib/clases/evento.class.php';
     require_once 'wpanel/lib/clases/servicio.class.php';
-
+    require_once 'wpanel/lib/clases/image.class.php';
+    require_once 'wpanel/lib/clases/testimonio.class.php';
 
     /*************************************** OJEBTOS LOCALES ******************************************/
     $noti = new noticia;
     $even = new evento;
     $service = new servicio;
-
+    $img = new image;
+    $test = new testimonio;
 
     /**************************************************************************************************/	
 
@@ -41,7 +43,15 @@
     if($noti->estatus)
         foreach ($noti->datos as $noticias)
         {
-        $array['NOTICIAS'] .= $html->html("html/noticias.html",array("id"=>$noticias['id_noticia'],"titulo"=>$noticias['titulo'],"descripcion"=>$noticias['descripcion'],"fecha" => $noticias['fecha']));
+            $img->listar("noti", $noticias['id_noticia']);
+            if($img->estatus)
+            foreach($img->imgFile as $img_noti)
+            {
+                $img_noticias = $img_noti;
+                
+            }
+
+        $array['NOTICIAS'] .= $html->html("html/noticias.html",array("id"=>$noticias['id_noticia'],"titulo"=>$noticias['titulo'],"descripcion"=>$noticias['descripcion'],"fecha" => $noticias['fecha'],"imagen"=>$img_noticias));
         }
         
       //INSERTANDO LOS EVENTOS DESTACADAS
@@ -50,7 +60,16 @@
     if($noti->estatus)
         foreach ($even->datos as $eventos)
         {
-        $array['EVENTOS'] .= $html->html("html/eventos.html",array("id"=>$eventos['id_evento'],"titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
+        $img->listar("serv", $eventos['id_evento']);
+            if($img->estatus)
+            foreach($img->imgFile as $img_eve)
+            {
+                $img_eventos = $img_eve;
+                
+            }
+        
+        
+        $array['EVENTOS'] .= $html->html("html/eventos.html",array("id"=>$eventos['id_evento'],"titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha'],"imagen"=>$img_noticias));
         }   
     
     
@@ -63,6 +82,18 @@
         foreach ($service->datos as $services)
            {
             $array['SERVICIOS'] .= $html->html("html/servicios_destacados.html",array("id"=>$services['id_servicio'],"titulo"=>$services['nombre'],"descripcion"=>$services['descripcion']));
+           }
+           
+    }
+    
+    //INSTANCIONADO LOS TESTIMONIOS
+    $array['TESTIMONIO'] = "";
+    $test->listar($data);
+    if($test->estatus)
+    {
+        foreach ($test->datos as $testis)
+           {
+            $array['TESTIMONIO'] .= $html->html("html/testimonio_destacados.html",array("id"=>$testis['id_test'],"titulo"=>$testis['testimonio']));
            }
            
     }

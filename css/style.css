@@ -101,7 +101,7 @@ h5.marker{background:url(../images/marker.png) 2px 50% no-repeat;padding:0 0 0 3
 
 .news_block{display:block;text-decoration:none;color:#737a7f;padding:10px;overflow:hidden;border-bottom:1px solid #dcdcdc;}
 .news_block:first-child{border-top:1px solid #dcdcdc;}
-.news_block img{float:left;border:7px solid #dcdcdc;margin-right:13px;}
+.news_block img{float:left;border:7px solid #dcdcdc;margin-right:13px; width: 80px; height: 60px;}
 .news_block strong{color:#444343;font-size:12px;display:block;margin:5px 0 0;}
 .news_block time{color:#0071ba;margin:5px 0 0;}
 .news_block:hover{background:url(../images/nav.png);}

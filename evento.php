@@ -22,7 +22,7 @@
     $matriz['TITULO'] .= NOMBRE;
     $matriz['KEYWORDS'] = "";
     $matriz['DESCRIPTION'] = "";
-    $matriz['BODY'] = "document.location = '#article'";
+    //$matriz['BODY'] = "document.location = '#article'";
     //$matriz['CSS'].=$html->html("html/css.html",array("href"=>"/wschool/css/form.css","media"=>"all"));
 
 

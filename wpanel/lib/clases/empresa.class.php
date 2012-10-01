@@ -36,7 +36,7 @@ class empresa
                     $this->somos = $datos['somos'];
                     $this->mision = $datos['mision'];
                     $this->vision = $datos['vision'];
-                    $this->telefono = $datos['somos'];
+                    $this->telefono = $datos['telefono'];
                     $this->correo = $datos['email_contacto'];
                     $this->email = $datos['email_cobranza'];
                     $this->mensaje="Se Mostraron los datos correctamente";

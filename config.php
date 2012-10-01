@@ -55,21 +55,21 @@ define('GOOGLE_ANALYTICS', false);
 define("DB_NAME","almacena_adonai");
 
 //Tu nombre de usuario de MySQL 
-define('DB_USER', 'almacena_adonai');
-//define('DB_USER', 'root');
+//define('DB_USER', 'almacena_adonai');
+define('DB_USER', 'root');
 
-/** Tu contraseña de MySQL*/
-define('DB_PASS', '@lmac3n@');
-//define('DB_PASS', '1234');
+/** Tu contraseï¿½a de MySQL*/
+//define('DB_PASS', '@lmac3n@');
+define('DB_PASS', '1234');
 
 /** Host de MySQL (es muy probable que no necesites cambiarlo)
 define('DB_HOST', 'mysql500.ixwebhosting.com'); **/
 define('DB_HOST', 'localhost');
 
-/** Puerto de conexión del servidor Mysql. **/
+/** Puerto de conexiï¿½n del servidor Mysql. **/
 define("DB_PORT","3306");
 
-/** Codificación de caracteres para la base de datos. **/
+/** Codificaciï¿½n de caracteres para la base de datos. **/
 define('DB_CHARSET', 'utf8');
 
 /****************************************************** URLS **********************************************************/
