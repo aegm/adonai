@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Archivo creado por el Ing. angel Gonzalez
  * correo: angeledugo@gmail.com
@@ -32,9 +31,27 @@ if(GOOGLE_ANALYTICS)
 $matriz['USR_INFO'] = "";        
         
 /****************************MENSAJES GENERALES**********************************/
-
+if(isset($_SESSION['mensaje']))
+	{
+		if($_SESSION['msgTipo']=="aviso")
+			$i['icon']="ui-icon-alert";
+		if($_SESSION['msgTipo']=="error")
+			$i['icon']="ui-icon-circle-close";
+		if($_SESSION['msgTipo']=="ok")
+			$i['icon']="ui-icon-circle-check";
+		if($_SESSION['msgTipo']=="info")
+			$i['icon']="ui-icon-info";
+		$matriz['MENSAJE']=$html->html('html/i.html',$i).$_SESSION['mensaje'];
+		$matriz['MSGTIPO']=$_SESSION['msgTipo'];
+		$matriz['MSGTITLE']=$_SESSION['msgTitle'];
+		unset($_SESSION['mensaje']);
+		unset($_SESSION['msgTipo']);
+		unset($_SESSION['msgTitle']);
+	}
 /****************************ARCHIVOS CSS Y JS***********************************/
 $archivo=basename($_SERVER['PHP_SELF']);
 	$archivo=explode(".",$archivo);
 	$archivo=$archivo[0];
+if (is_file("lib/js/$archivo".".js"))
+        $matriz['JS'] .= $html->html("html/js.html",array("src"=>"lib/js/".$archivo.".js"));
 ?>

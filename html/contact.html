@@ -1,8 +1,17 @@
-<div class="container_24" id="article">
-      <div class="wrapper">
-          <h3>CONTACTO</h3>
-          <article class="grid_23">
-              Correo de contacto : {CORREO}
-          </article>
-      </div>
+<div class="container_24" id="">
+    <h3>CONTACTO</h3>
+<form id="pro_contact-form" action="form_process.php" method="post" class="form">
+      <label for="name">Nombre(*):</label>
+      <input type="text" class="text vobli" value="{name}" id="name" name="name" required >
+      <label for="email">Email (*):</label>
+      <input type="text" class="text vcorreo vobli" value="{email}" id="email" name="email" required>
+      <span class="for-info">Ejemplo: nombre@correo.com</span>
+      <label for="phone">Telefono(*):</label>
+      <input type="text" class="text vtelefono vobli" value="{phone}" id="phone" name="phone" required>
+      <label for="comments">Comentarios(*):</label>
+      <textarea id="comments" name="comments" class="vobli">{comments}</textarea>
+      <button type="submit" class="pro_buttons"><span>Enviar</span></button>
+      <button type="reset" class="pro_buttons"><span>Borrar</span></button>
+      <input type="hidden" value="contact" name="form">
+</form>
   </div>

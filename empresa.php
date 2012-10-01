@@ -35,7 +35,8 @@
     //SE IMPRIMEN LOS DATOS DE LA EMPRESA
     $datos->datBas();
     $array['QUIENES_SOMOS'] = $html->html("html/quienes_somos.html",array("QUIENES"=>$datos->somos));
-    
+    $array['MISION'] = $datos->mision;
+    $array['VISION'] = $datos->vision;
     
     
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);

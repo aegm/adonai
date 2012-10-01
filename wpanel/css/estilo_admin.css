@@ -174,3 +174,10 @@ article{
 {
     display: none;
 }
+
+.img
+{
+    width:100px;
+    height:80px;
+    padding: 2%;
+}

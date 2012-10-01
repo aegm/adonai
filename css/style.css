@@ -1,7 +1,8 @@
 @import"reset.css";@import"pro_pages_style.css";@import"grid.css";@import"forms.css";@import"prettyPhoto.css";@import"jquery.snippet.min.css";
 @import"../skin/blue.monday/jplayer.blue.monday.css";@import"../css/smoothness/jquery-ui-1.8.17.custom.css";@import"superfish.css";
 body{
-    font:13px/20px Arial, Helvetica, sans-serif;color:#737a7f;position:relative;min-width:1000px;}
+    font:13px/20px Arial, Helvetica, sans-serif;color:#737a7f;position:relative;min-width:1000px;
+}
 html,body{height:100%;}
 #privacy{line-height:18px;}
 #privacy p{margin:0 0 18px;}
@@ -176,13 +177,13 @@ time.inline{display:inline;padding:1px 0 0px 24px;}
 #map_canvas{width:456px;height:425px;border:7px solid #9e9e9e;}
 
 /******************** Footer ******************/
-footer{padding:0 0px 29px;overflow:hidden;line-height:18px;}
+footer{padding:0 0px 29px;overflow:hidden;line-height:18px; background:rgb(100,148,237); color: white; }
 .line{width:950px;height:19px;font-size:0;line-height:0;overflow:hidden;margin:0 auto 29px;background:url(../images/nav.png);}
 .line.line2{width:990px;}
-footer a{color:#737a7f;}
+footer a{color:white;}
 footer .footer-logo{display:block;background:url(../images/logo_3.png) 0 0 no-repeat;width:101px;height:50px;text-indent:-1000px;overflow:hidden;margin:0 0 26px; background-size:90px 50px;}
 footer .reg{font-size:11px;text-transform:none;}
-footer p{margin:0 0 13px;}
+footer p{margin:0 0 13px; color: white;}
 footer .reg a{color:#0071ba;}
 footer h5{text-transform:none;margin:0 0 19px;}
 footer .phone{background:url(../images/phone.png) 0 0 no-repeat;display:inline-block;margin:0 0 0 13px;padding:0 0 0 15px;}

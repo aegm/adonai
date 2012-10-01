@@ -191,7 +191,6 @@ class image {
      {
          //raiz de apertura
          $raiz = $_SERVER['DOCUMENT_ROOT']."/adonai/images/";
-         echo $raiz.$dir."/".$id."/";
          if(is_dir($raiz.$dir."/".$id."/"))
          {
             
@@ -200,18 +199,20 @@ class image {
              $allowed_ext = preg_split("/\,/",$allowed_ext);
              while($img = readdir($archivo)){
                     //comprobando la extencion
-                    $exten = explode(".", $img);
+                    
+                 $exten = explode(".", $img);
                     foreach($allowed_ext as $ext){
 			   if($ext==$exten[1]){ 
+                              
 					$this->imgFile[] = $img;
                                         $this->estatus = true;
-                                        return $this->estatus;
                            }else{
 					$this->mensaje = "Extencion no permitida";
                            }
 		     }
              }  
          }
+          return $this->estatus;
          
      }
      public function eliminar($conv, $ano,$serv)

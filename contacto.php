@@ -7,35 +7,21 @@
     session_start();
     /************************************** LIBRERIAS LOCALES *****************************************/
     require_once 'config.php';
-    require_once 'wpanel/lib/clases/empresa.class.php';
-   
-
-
     /*************************************** OJEBTOS LOCALES ******************************************/
-    $datos = new empresa;
 
     /**************************************************************************************************/	
-
     include_once('head.php');
-
     /**************************************** VARIABLES DE MATRIZ **************************************/
 
     $matriz['TITULO'] .= NOMBRE;
     $matriz['KEYWORDS'] = "";
     $matriz['DESCRIPTION'] = "";
     $matriz['BODY'] = "inicio";
-    //$matriz['CSS'].=$html->html("html/css.html",array("href"=>"/wschool/css/form.css","media"=>"all"));
-
-
-    //$matriz['CSS'] .= $html->html("html/css.html",array("href"=>"css/--Colocar archivo--.css","media"=>"all"));
-    //$matriz['JS'] .= $html->html("html/js.html",array("src"=>"lib/js/--Colocar archivo--.js"));
 
     /********************************************* CONTENIDO *******************************************/	
+
     
-    //SE IMPRIMEN LOS DATOS DE LA EMPRESA
-    $datos->datBas();
-    
-    $array['CONTACTO'] = $html->html("html/contact.html",array("CORREO"=>$datos->correo));
+    $array['CONTACTO'] = $html->html("html/contact.html",array("CORREO"=>$datos->correo,"MISION"=>$datos->mision,"VISION"=>$datos->vision));
     
     
     

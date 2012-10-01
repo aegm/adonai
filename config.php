@@ -1,5 +1,4 @@
-ï»¿<?php
-
+<?php
 /*
  * Autor: Angel Gonzalez
  * Correo: angeledugo@gmail.com
@@ -56,21 +55,21 @@ define('GOOGLE_ANALYTICS', false);
 define("DB_NAME","almacena_adonai");
 
 //Tu nombre de usuario de MySQL 
-//define('DB_USER', 'almacena_adonai');
-define('DB_USER', 'root');
+define('DB_USER', 'almacena_adonai');
+//define('DB_USER', 'root');
 
-/** Tu contraseÃ±a de MySQL*/
-//define('DB_PASS', '@lmac3n@');
-define('DB_PASS', '1234');
+/** Tu contraseña de MySQL*/
+define('DB_PASS', '@lmac3n@');
+//define('DB_PASS', '1234');
 
 /** Host de MySQL (es muy probable que no necesites cambiarlo)
 define('DB_HOST', 'mysql500.ixwebhosting.com'); **/
 define('DB_HOST', 'localhost');
 
-/** Puerto de conexiÃ³n del servidor Mysql. **/
+/** Puerto de conexión del servidor Mysql. **/
 define("DB_PORT","3306");
 
-/** CodificaciÃ³n de caracteres para la base de datos. **/
+/** Codificación de caracteres para la base de datos. **/
 define('DB_CHARSET', 'utf8');
 
 /****************************************************** URLS **********************************************************/

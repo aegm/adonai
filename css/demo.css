@@ -1,15 +1,15 @@
 /*--------- slider ---------*/
 .slider {
-	margin:0 auto;width:951px;height:450px;background:url(../images/loader.gif) 50% 50% no-repeat;position:relative;overflow:visible !important;
+	margin:0 auto;width:951px;height:250px;background:url(../images/loader.gif) 50% 50% no-repeat;position:relative;overflow:visible !important;
 }
 
 .slider-bg {
 	position: relative;
 	margin:0 auto 53px;
 	width:950px;
-	padding-bottom:1px;
+	padding-bottom:20px;
 	background:url(../images/nav.png);
-	padding:20px;
+	/*padding:20px;*/
 }
 
 .items {
@@ -104,7 +104,7 @@
 	display:none;
 }
 .banner{
-	color:#444343;position:absolute;right:0px !important; left:auto !important;top:331px;width:421px;overflow:hidden;z-index:999;font-size:27px;line-height:1.2em;letter-spacing:-1px;background:url(../images/banner.png) 100% 0 no-repeat;text-transform:uppercase;padding:18px 0 24px 78px;
+	color:#444343;position:absolute;right:0px !important; left:auto !important;top:200px;width:421px;overflow:hidden;z-index:999;font-size:27px;line-height:1.2em;letter-spacing:-1px;background:url(../images/banner.png) 100% 0 no-repeat;text-transform:uppercase;padding:18px 0 24px 78px;
 }
 
 .slider .banner a{position:absolute;left:0;top:7px;width:61px;height:61px;display:block;background:url(../images/banner-link.png) 0 0 no-repeat;}
