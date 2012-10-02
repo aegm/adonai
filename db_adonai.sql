@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2012-10-02 11:35:10
+Date: 2012-10-02 16:50:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -68,7 +68,7 @@ CREATE TABLE `eventos` (
 -- ----------------------------
 -- Records of eventos
 -- ----------------------------
-INSERT INTO `eventos` VALUES ('1', 'Lorem Ipsum Dolor Amet', '<p>Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet</p>', '2012-10-02 09:33:25');
+INSERT INTO `eventos` VALUES ('1', 'Lorem Ipsum Dolor Amet', '<p>Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'\r\n<div>Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'</div>\r\n<div>&nbsp;</div>\r\n<div>Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'</div>\r\n<div>&nbsp;</div>\r\n<div>Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'Lorem Ipsum Dolor Amet Ipsum lorem lorem amet dolor Ipsum dolor Amet\'</div>\r\n</p>', '2012-10-02 16:48:40');
 
 -- ----------------------------
 -- Table structure for `formularios`
@@ -266,9 +266,9 @@ INSERT INTO `menu` VALUES ('1', '1', 'menu_empresa', '', 'Empresa', 'wpanel/empr
 INSERT INTO `menu` VALUES ('2', '2', 'menu_noticia', '', 'Noticias', 'wpanel/noticia.php', '', '5', '0', '1');
 INSERT INTO `menu` VALUES ('3', '3', 'menu_eventos', '', 'Eventos', 'wpanel/eventos.php', '', '6', '0', '1');
 INSERT INTO `menu` VALUES ('4', '4', 'menu_testimonio', '', 'Testimonios', 'wpanel/testimonio.php', '', '7', '0', '1');
-INSERT INTO `menu` VALUES ('5', '5', 'menu_instalaciones', ' ', 'Instalaciones', 'wpanel/Instalaciones.php', ' ', '2', '0', '1');
-INSERT INTO `menu` VALUES ('6', '6', 'menu_servicios', ' ', 'Servicios', 'wpanel/servicios.php', ' ', '3', '0', '1');
-INSERT INTO `menu` VALUES ('7', '7', 'menu_cobertura', ' ', 'Cobertura', 'wpanel/cobertura.php', ' ', '4', '0', '1');
+INSERT INTO `menu` VALUES ('5', '5', 'menu_instalaciones', ' ', 'Instalaciones', 'wpanel/Instalaciones.php', '', '2', '0', '1');
+INSERT INTO `menu` VALUES ('6', '6', 'menu_servicios', ' ', 'Servicios', 'wpanel/servicios.php', '', '3', '0', '1');
+INSERT INTO `menu` VALUES ('7', '7', 'menu_cobertura', ' ', 'Cobertura', 'wpanel/cobertura.php', '', '4', '0', '1');
 
 -- ----------------------------
 -- Table structure for `noticias`
@@ -418,7 +418,7 @@ CREATE TABLE `usuarios` (
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
-INSERT INTO `usuarios` VALUES ('1', '1', 'aegm', '81dc9bdb52d04dc20036dbd8313ed055', '1347424200', '1349191279', '1');
+INSERT INTO `usuarios` VALUES ('1', '1', 'aegm', '81dc9bdb52d04dc20036dbd8313ed055', '1347424200', '1349210778', '1');
 
 -- ----------------------------
 -- Table structure for `usuarios_accesos`
