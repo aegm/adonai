@@ -8,11 +8,12 @@
     /************************************** LIBRERIAS LOCALES *****************************************/
     require_once 'config.php';
     require_once 'wpanel/lib/clases/evento.class.php';
-
+    require_once 'wpanel/lib/clases/image.class.php';
 
 
     /*************************************** OJEBTOS LOCALES ******************************************/
     $even = new evento;
+    $img = new image;
     /**************************************************************************************************/	
 
     include_once('head.php');
@@ -36,7 +37,16 @@
     if($even->estatus)
         foreach ($even->datos as $eventos)
         {
-        $array['EVENTOS'] .= $html->html("html/eventos.html",array("id"=>$eventos['id_evento'],"titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha']));
+        $img->listar("eve", $eventos['id_evento']);
+            if($img->estatus)
+            foreach($img->imgFile as $img_eve)
+            {
+                 $img_eventos = $img_eve;
+                 
+                
+            }
+        
+        $array['EVENTOS'] .= $html->html("html/eventos.html",array("id"=>$eventos['id_evento'],"titulo"=>$eventos['titulo_evento'],"descripcion"=>$eventos['descripcion'],"fecha" => $eventos['fecha'],"imagen"=>$img_eventos,"ROOT_URL"=>ROOT_URL));
         }   
     
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);

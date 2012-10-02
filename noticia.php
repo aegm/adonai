@@ -8,11 +8,12 @@
     /************************************** LIBRERIAS LOCALES *****************************************/
     require_once 'config.php';
     require_once 'wpanel/lib/clases/noticia.class.php';
-
+    require_once 'wpanel/lib/clases/image.class.php';
 
 
     /*************************************** OJEBTOS LOCALES ******************************************/
     $noti = new noticia;
+    $img = new image;
     /**************************************************************************************************/	
 
     include_once('head.php');
@@ -34,8 +35,14 @@
     $noti->listar($_GET['id']);
     if($noti->estatus)
         foreach ($noti->datos as $valores) {
-            
-            $array['NOTICIA'] .= $html->html("html/noticias.html",array("id"=>$valores['id_noticia'],"titulo"=>$valores['titulo'],"descripcion"=>$valores['descripcion'],"conten"=>$valores['contenido'],"fecha" => $valores['fecha'],));
+               $img->listar("noti", $valores['id_noticia']);
+            if($img->estatus)
+            foreach($img->imgFile as $img_noti)
+            {
+                $img_noticias = $img_noti;
+                
+            }
+            $array['NOTICIA'] .= $html->html("html/noticias.html",array("id"=>$valores['id_noticia'],"titulo"=>$valores['titulo'],"descripcion"=>$valores['descripcion'],"conten"=>$valores['contenido'],"fecha" => $valores['fecha'],"ROOT_URL"=>ROOT_URL,"imagen"=>$img_noti));
         }
     
     

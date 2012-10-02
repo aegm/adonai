@@ -8,12 +8,13 @@
     /************************************** LIBRERIAS LOCALES *****************************************/
     require_once 'config.php';
     require_once 'wpanel/lib/clases/servicio.class.php';
+    require_once 'wpanel/lib/clases/image.class.php';
    
 
 
     /*************************************** OJEBTOS LOCALES ******************************************/
     $service = new servicio;
-
+    $img = new image;
     /**************************************************************************************************/	
 
     include_once('head.php');
@@ -37,7 +38,16 @@
     $service->listar($data);
     foreach ($service->datos as $ser)
     {
-        $array['SERVICIO'] .= $html->html("html/detalle_servicio.html",array("id"=>$ser['id_servicio'],"NOMBRE"=>$ser['nombre'],"DESCRIPCION"=>$ser['descripcion']));
+        $img->listar("serv", $ser['id_servicio']);
+            if($img->estatus)
+            foreach($img->imgFile as $img_ser)
+            {
+                 $img_serv = $img_ser;
+                 
+                
+            }
+        
+        $array['SERVICIO'] .= $html->html("html/detalle_servicio.html",array("id"=>$ser['id_servicio'],"NOMBRE"=>$ser['nombre'],"DESCRIPCION"=>$ser['descripcion'],"imagen"=>$img_serv));
     }
     
     $matriz['CONTENIDO'] = $html->html("html/$archivo.html",$array);
